@@ -1,0 +1,33 @@
+<div class="col-md-8 column">
+  <div class="form-group <%= 'field_with_errors' if @post.errors[:plate_id].present?%>">
+    <label class="control-label">板块</label>
+    <%= f.select :plate_id, Plate.show_plates.pluck(:name, :id),
+                 {:include_blank => true}, :class => 'form-control' %>
+    <%= f.full_error :plate_id, :class => 'error' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label">配图</label>
+    <%= f.file_field :image, :onchange => "img_preview(this, 'post_img')" %>
+  </div>
+  <div class="form-group">
+    <%= f.input :title, :label => '标题', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}, :required => false %>
+  </div>
+  <div class="form-group <%= 'field_with_errors' if @post.errors[:content].present?%>">
+    <label class="control-label" for="post_content">简述</label>
+    <%= f.text_area :content, :class => 'form-control text_field_re_v', :id => 'post_content' %>
+    <%= f.full_error :content, :class => 'error' %>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="post_detail">正文</label>
+    <%= f.text_area :detail, :class => 'form-control text_field_re_v', :id => 'post_detail', :rows => "10"%>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" type="submit">发布</button>
+  </div>
+</div>
+
+<div class="col-md-3 column">
+  <div class="post_img" id="post_img">
+
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.input :name, :label => '板块名', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}, :required => false%>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="control-label">显示状态</label>
+      <div class="radio">
+        <label class="radio-inline">
+          <%=f.radio_button :show_flag,true, :class => 'flat'%>
+          显示
+        </label>
+        <label class="radio-inline">
+          <%=f.radio_button :show_flag,false, :class => 'flat'%>
+          不显示
+        </label>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="info" class="control-label">板块信息</label>
+      <%= f.text_area :info, :class => 'form-control text_field_re_v', :id => 'form-control' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-success" type="submit">保存</button>
+  </div>
+</div>

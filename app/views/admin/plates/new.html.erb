@@ -1,0 +1,9 @@
+<div class="active" id="">
+  <p>
+    <a href="<%=admin_plates_path%>">板块管理</a> / 板块新建
+  </p>
+  <%= render 'common/message'%>
+  <%= simple_form_for @plate, :url => { :controller => 'admin/plates', :action => 'create'} do |f| %>
+      <%= render 'form', {:f => f }%>
+  <% end %>
+</div>

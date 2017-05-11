@@ -1,0 +1,8 @@
+<% if @save_flag %>
+alert('<%= I18n.t('messages.release_success')%>');
+$("#comment").html("");
+$("#comments").html("<%= j(render(:partial => 'posts/comment_list', :locals => {:comments => @comments}))%>");
+<% else %>
+$('#comment').html('<%= j(render(:partial => 'posts/comment', :locals => {:post => @post, :comment => @comment}))%>')
+alert('<%= I18n.t('messages.release_failed')%>');
+<% end %>

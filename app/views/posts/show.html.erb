@@ -1,0 +1,41 @@
+<h1>帖子详情：</h1>
+<div class="row clearfix">
+  <div class="col-md-1 column">
+
+  </div>
+  <div class="col-md-8 column">
+    <h2>
+      <%= @post.title%>
+    </h2>
+    <p>
+      <%= replace_br @post.detail%>
+    </p>
+
+
+  </div>
+  <div class="col-md-3 column">
+    <div class="show_post_box_detail">
+      <%if @post.post_picture.present?%>
+        <%= image_tag @post.post_picture.image.url%>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row mt20 mb40">
+    <a href="">
+      <%= image_tag 'good.png'%>
+    </a>
+  <%= link_to new_post_comment_path(@post), :remote => true do%>
+      <%= image_tag 'comment.png'%>
+  <% end %>
+</div>
+<div class="container">
+  <div class="" id="comments" name="comments">
+    <%= render 'comment_list', :comments => @comments%>
+  </div>
+
+
+  <div class="row" id="comment" name="comment">
+
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<%= render 'common/user'%>
+<h1>编辑帖子：</h1>
+<div class="row clearfix">
+  <%= simple_form_for @post, :url => {:controller => 'posts', :action => 'create'}, :html => {:multipart => true}  do |f|%>
+    <%= render 'form', {:f => f}%>
+  <% end %>
+</div>

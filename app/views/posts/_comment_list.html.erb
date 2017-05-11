@@ -1,0 +1,30 @@
+<% if comments.present?%>
+    <% comments.each do |comment|%>
+        <div class="row mb40 border_b">
+          <div class="col-md-3">
+            <div class="media">
+              <a class="pull-left" href="#"><img class="media-object" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/64/64/default.jpg" alt='' /></a>
+              <div class="media-body">
+                <h4 class="media-heading">
+                  宗含含
+                </h4>
+                <p>
+                  做生活的设计师！<br /> 28 关注| 26 粉丝
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="col-md-11">
+              <%= replace_br comment.content%>
+            </div>
+            <div class="col-md-1 pull-right">
+              <div class=""><%= comment.floor_num%>楼</div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <div class="row text-right">
+        <%= paginate comments, :remote => true%>
+    </div>
+<% end %>

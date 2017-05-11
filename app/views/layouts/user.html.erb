@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testrails</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag  'user_application'%>
+  <%= javascript_include_tag 'user_application' %>
+</head>
+
+    <body class="login">
+        <div class="loading" id="loading"></div>
+        <div class="container">
+          <div class="row clearfix">
+            <div class="col-md-12 column">
+              <%= render 'common/top_banner'%>
+              <%= render 'common/message'%>
+            </div>
+          </div>
+            <%= yield %>
+        </div>
+        <%= render 'common/footer'%>
+    </body>
+</html>

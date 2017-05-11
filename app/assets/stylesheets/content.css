@@ -1,0 +1,118 @@
+
+.pt100{padding-top: 100px;}
+.mt100{margin-top: 100px;}
+.mt20{margin-top:20px;}
+.mt10{margin-top:10px;}
+.mb50{margin-bottom: 50px;}
+.mb40{margin-bottom: 40px;}
+
+.container {
+    min-width: 1140px;
+}
+
+.border_b{
+    border-bottom: 1px solid darkgrey;
+}
+
+.panel-body{
+	border: 1px solid #e4e5e7;
+	background: #fff;
+}
+*{
+    font-family: '微软雅黑';
+}
+
+body.login{
+	background: #f7f9fa;
+}
+.login-container{
+	margin: auto;
+	padding-top: 6%;
+}
+
+/* input start*/
+.field_with_errors .error, .field_with_errors label{
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
+.field_with_errors input, .field_with_errors textarea, .field_with_errors select{
+    border: 1px solid red;
+}
+/* input end */
+
+.pagination .current a{
+    color: black;
+}
+
+/* table start */
+.color_table>thead>tr>th, .color_table>tbody>tr>th, .color_table>tfoot>tr>th, .color_table>thead>tr>td, .color_table>tbody>tr>td, .color_table>tfoot>tr>td{
+    vertical-align: middle;
+}
+.color_table tbody tr:nth-child(even){
+    background: #f1f1f1;
+}
+.center {
+    text-align: center;
+}
+td, th{
+    text-overflow:ellipsis;
+}
+/* table end */
+
+.text_field_re_v{
+    resize: vertical;
+}
+.text_field_re_h{
+    resize: horizontal;
+}
+.text_field_re_n{
+    resize: none;
+}
+
+/* img 居中显示 */
+.show_post_box{
+    width: 300px;
+    height: 100px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.show_post_box img{
+    max-width: 150px;
+    max-height: 100px;
+}
+.show_post_box_detail{
+    width: 300px;
+    height: 100px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.show_post_box_detail img{
+    max-width: 300px;
+    max-height: 200px;
+}
+.post_img{
+    width: 200px;
+    height: 200px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border: 5px solid gainsboro;
+    border-radius: 5px;
+}
+.post_img img{
+    max-width: 190px;
+    max-height: 190px;
+}
+
+#loading{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background: #000000 url('loading.gif') no-repeat center;
+    opacity: 0.5;
+    z-index: 10;
+    display: none;
+}

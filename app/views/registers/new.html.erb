@@ -1,0 +1,31 @@
+<div class="row clearfix">
+  <div class="col-md-4 column">
+  </div>
+  <div class="col-md-4 column">
+    <%= simple_form_for @user, :url => {:controller => 'registers', :action => 'create'}, :html => {:multipart => true} do |f|%>
+      <div class="form-group">
+        <%= f.input :login, :label => '用户名：（用户名唯一）', :input_html => {:class => 'form-control', :id => 'login'}%>
+      </div>
+      <div class="form-group">
+        <%= f.input :email, :label => '邮箱：', :input_html => {:class => 'form-control', :id => 'email'}%>
+      </div>
+      <div class="form-group">
+        <label for="password">请输入密码：</label>
+        <%= f.password_field :password, :class => 'form-control', :id => 'password'%>
+      </div>
+      <div class="form-group">
+        <label for="password_confirmation">请再次输入密码：</label>
+        <%= f.password_field :password_confirmation, :class => 'form-control', :id => 'password_confirmation' %>
+      </div>
+      <div class="form-group">
+        <label for="image">上传头像</label>
+        <%= f.file_field :image, :id => 'image'%>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" />同意网站所有协议</label>
+      </div> <button type="submit" class="btn btn-default">注册</button>
+    <% end %>
+  </div>
+  <div class="col-md-4 column">
+  </div>
+</div>

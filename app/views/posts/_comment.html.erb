@@ -1,0 +1,12 @@
+<div class="col-md-8">
+  <%= simple_form_for comment, :url => post_comments_path(post), :method => :post, :remote => true do |f|%>
+  <div class="form-group <%= 'field_with_errors' if comment.errors[:content].present?%>">
+    <label class="control-label" for="content">评论</label>
+    <%= f.text_area :content, :id => 'content', :class => 'form-control text_field_re_v', :rows => '5'%>
+    <%= f.full_error :content, :class => 'error' %>
+  </div>
+  <div class="form-group">
+    <button class="btn" type="submit">发布评论</button>
+  </div>
+  <% end %>
+</div>

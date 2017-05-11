@@ -1,0 +1,9 @@
+<%= form_for @user, :url => {:controller => 'admin/users', :action => 'create'} do |form| %>
+    <%= form.label :login %>
+    <%= form.text_field :login %><br/>
+    <%= form.label :password %>
+    <%= form.password_field :password %><br/>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %><br/>
+    <%= form.submit 'sign up'%>
+<% end %>
