@@ -14,11 +14,15 @@
 
   </div>
   <div class="col-md-3 column">
-    <div class="show_post_box_detail">
-      <%if @post.post_picture.present?%>
-        <%= image_tag @post.post_picture.image.url%>
-      <% end %>
-    </div>
+    <%if @post.post_pictures.present?%>
+        <% @post.post_pictures.each do |picture|%>
+            <div>
+            <div class="show_post_box_detail">
+                <%= image_tag picture.image.url%>
+            </div>
+            </div>
+        <% end %>
+    <% end %>
   </div>
 </div>
 <div class="row mt20 mb40">

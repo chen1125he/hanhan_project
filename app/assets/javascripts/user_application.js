@@ -11,8 +11,15 @@
 // about supported directives.
 //
 //= require jquery-2.0.0.min
+//= require jquery_ujs
 //= require bootstrap.min
 //= require icheck.min
-//= require common
 //= require icheck.min
-//= require_tree .
+//= require fileinput/fileinput.min
+//= require fileinput/locales/zh
+//= require fileinput/themes/explorer/theme
+//= require bootstrap/bootstrap-datepicker
+//= require bootstrap/dp-zh.js
+//= require common
+// require bootstrap/bootstrap-datepicker
+// require_tree .

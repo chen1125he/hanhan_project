@@ -10,7 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require bootstrap.min
+ *= require bootstrap-3.3.7-dist/css/bootstrap.min.css
  *= require content
  *= require skins/flat/flat.css
+ *= require fileinput/themes/fileinput.min
+ *= require fileinput/themes/explorer/theme
  */

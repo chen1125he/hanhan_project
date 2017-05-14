@@ -7,7 +7,8 @@
   </div>
   <div class="form-group">
     <label class="control-label">配图</label>
-    <%= f.file_field :image, :onchange => "img_preview(this, 'post_img')" %>
+    <input type="file" class="file-loading" id="post_img" name="images[]" multiple/>
+    <%#= f.file_field :image, :onchange => "img_preview(this, 'post_img')" %>
   </div>
   <div class="form-group">
     <%= f.input :title, :label => '标题', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}, :required => false %>
@@ -31,3 +32,42 @@
 
   </div>
 </div>
+
+<script type="application/javascript">
+    $(function(){
+
+        var initialPreview = [];
+        var initialPreviewConfig = [];
+        // initialPreview[<%#= index %>] = '<%#= picture.image.url(:original) %>';
+        // initialPreviewConfig[<%#= index %>] = {caption: '<%#= picture.image_file_name %>', size: <%#= picture.image_file_size %>, width: "120px", key: <%#= picture.id %>};
+
+        $("#post_img").fileinput({
+            'theme': 'explorer',
+            initialPreview: initialPreview,
+            initialPreviewConfig: initialPreviewConfig,
+            uploadUrl: '#',
+            //            uploadUrl: '<%#= file_upload_path %>',
+            //            deleteUrl: '<%#= file_delete_path %>',
+            initialPreviewAsData: true, //预览方式
+            allowedFileExtensions : ['jpg', 'png','gif', 'bmp'], //限制文件格式
+            //allowedFileTypes: ["image"],
+            overwriteInitial: false, //追加的方式添加
+            autoReplace: false,
+            showUpload: false,
+            showCaption: true,
+            showRemove: true,
+            uploadAsync: false,
+            language: 'zh', //语言
+            maxFileSize: 2000, //图片大小(kb)
+            maxFileCount: 10, //图片数量
+            maxFilePreviewSize: 10240,
+            dropZoneEnabled: false
+        }).on('fileselect', function(event, numFiles, label) {
+            setTimeout(function () {
+                $('button.kv-file-upload').hide();
+            }, 30);
+        });
+        $('button.fileinput-remove-button').hide();
+        $('div.fileinput-remove').hide();
+    })
+</script>

@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510123651) do
+ActiveRecord::Schema.define(version: 20170514080237) do
+
+  create_table "care_careds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "care_id"
+    t.integer  "cared_id"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.text     "content",    limit: 65535
-    t.boolean  "show_flag",                default: true
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.text     "content",      limit: 65535
+    t.boolean  "show_flag",                  default: true
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "floor_num"
-    t.boolean  "deleted",                  default: false
+    t.boolean  "deleted",                    default: false
+    t.integer  "user_info_id"
   end
 
   create_table "pictures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,14 +57,38 @@ ActiveRecord::Schema.define(version: 20170510123651) do
     t.integer  "user_id"
     t.integer  "plate_id"
     t.string   "title"
-    t.text     "content",     limit: 65535
-    t.boolean  "deleted",                   default: false, null: false
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.text     "detail",      limit: 65535
-    t.integer  "read_num",                  default: 0
-    t.boolean  "show_flag",                 default: true
-    t.integer  "comment_num",               default: 0
+    t.text     "content",           limit: 65535
+    t.boolean  "deleted",                         default: false, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.text     "detail",            limit: 65535
+    t.integer  "read_num",                        default: 0
+    t.boolean  "show_flag",                       default: true
+    t.integer  "comment_num",                     default: 0
+    t.boolean  "user_deleted_flag",               default: false
+  end
+
+  create_table "user_info_plates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_info_id"
+    t.integer  "plate_id"
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "user_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "nick_name"
+    t.string   "sign"
+    t.integer  "sex",        default: 1
+    t.integer  "job"
+    t.string   "city"
+    t.date     "birth"
+    t.integer  "cares_num",  default: 0
+    t.integer  "cared_num",  default: 0
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

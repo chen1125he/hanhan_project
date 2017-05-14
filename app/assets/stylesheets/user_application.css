@@ -10,8 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= bootstrap.min
- *= content
- *= require_self
+
+ *= require bootstrap-3.3.7-dist/css/bootstrap.css
+ *= require content
+ *= require skins/flat/flat.css
+ *= require fileinput/themes/fileinput.min
+ *= require fileinput/themes/explorer/theme
+ *= require bootstrap-3.3.7-dist/datepicker
  */

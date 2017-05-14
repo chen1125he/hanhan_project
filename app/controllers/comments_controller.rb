@@ -10,10 +10,16 @@ class CommentsController < BaseController
     @comment = Comment.new(strip params.fetch(:comment).permit(:content))
     @comment.post = @post
     @comment.user = current_user
+    @comment.user_info = current_user.try(:user_info)
     @comment.floor_num = Comment.comment_next_floor @post.try(:id)
     @save_flag = false
-    if @comment.save
-      @save_flag = true
+    Comment.transaction do
+      if @comment.save
+        @save_flag = true
+        @post.update_attribute(:comment_num, @post.comment_num.to_i + 1)
+      else
+        raise ActiveRecord::Rollback
+      end
     end
     @comments = Comment.show_comment @post.id, params
   end

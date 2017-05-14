@@ -9,8 +9,12 @@ class RegistersController < BaseController
     @user.role_type = 'User'
     User.transaction do
       update_or_save_image
+
+      @user_info = UserInfo.new
+      @user_info.nick_name = @user.login
+      @user_info.user = @user
+      @user_info.save
       unless @user.save
-        pp @user.errors
         render 'new'
       end
     end

@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_user_session
+  helper_method :current_user, :current_user_session, :current_user_info
 
   before_action :admin_login
 
   layout :layout_str
 
   PER_PAGE = 10
+  PER_PAGE3 = 3
+  PER_PAGE18 = 18
+  PER_PAGE12 = 12
 
   private
   def admin_login
@@ -21,6 +24,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= current_user_session && current_user_session.record
+  end
+
+  def current_user_info
+    current_user.try(:get_user_info)
   end
 
   def current_admin

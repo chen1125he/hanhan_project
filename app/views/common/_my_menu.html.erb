@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  <li class="<%= admin_menu_active :my_posts%>">
+    <%= link_to '我的帖子', my_posts_path%>
+  </li>
+  <li class="<%= admin_menu_active :my_comments%>">
+    <a href="#panel-328713">我的评论</a>
+  </li>
+  <li class="<%= admin_menu_active :user_infos%>">
+    <%= link_to '我的信息', {:controller => 'user_infos', :action => 'edit'}%>
+  </li>
+</ul>

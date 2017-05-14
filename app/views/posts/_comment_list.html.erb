@@ -9,7 +9,11 @@
                   宗含含
                 </h4>
                 <p>
-                  做生活的设计师！<br /> 28 关注| 26 粉丝
+                  做生活的设计师！<br />
+                  <%= link_to :url => {:controller => 'care_careds', :action => 'create', :cared_id => comment.user.get_user_info.id}, :method => :post, :remote => true do %>
+                      关注
+                  <% end %>
+                      | 26 粉丝
                 </p>
               </div>
             </div>
@@ -25,6 +29,6 @@
         </div>
     <% end %>
     <div class="row text-right">
-        <%= paginate comments, :remote => true%>
+        <%= paginate comments, :params => {:controller => 'posts', :action => 'show'}, :remote => true%>
     </div>
 <% end %>

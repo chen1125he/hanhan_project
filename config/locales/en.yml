@@ -50,6 +50,9 @@ en:
     logined: '无需重复登录！'
     release_success: '发布成功！'
     release_failed: '发布失败！'
+    login_success: '登录成功！'
+    update_success: '更新成功！'
+    update_faild: '更新失败！'
 
   error:
     too_short: '太短'
@@ -67,6 +70,10 @@ en:
     models:
       user: '用户'
     attributes:
+      user_info:
+        nick_name: '昵称'
+        sign: '个性签名'
+        job: '行业'
       user:
         login: '用户名'
         password: '密码'

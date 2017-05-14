@@ -1,0 +1,36 @@
+<% if posts.present?%>
+    <% posts.each_with_index do |post, index| %>
+        <% if index % 6 == 0%>
+            <div class="col-md-12 column">
+              <div class="row">
+        <% end %>
+        <div class="col-md-2">
+          <div class="thumbnail">
+            <%if post.post_pictures.present? %>
+                <div class="show_post_box">
+                  <%= image_tag(post.post_pictures.first.image.url(:original)) %>
+                </div>
+            <%end%>
+            <div class="caption">
+              <h3>
+                <%= post.title%>
+              </h3>
+              <p>
+                <%= post.content%>
+              </p>
+              <p>
+                <%= link_to post_path(post), :class => 'btn btn-primary' do %>
+                    详情
+                <% end %>
+                <span class="post_show_time"><%= post_show_time post.updated_at%></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% if (index+1) % 6 == 0%>
+            </div>
+            </div>
+        <% end %>
+    <% end %>
+
+<% end %>

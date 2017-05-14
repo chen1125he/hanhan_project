@@ -17,6 +17,7 @@ class UserSessionsController < BaseController
         render 'new'
         return
       end
+      flash[:notice] = I18n.t('messages.login_success')
       # redirect_to admin_posts_path
     else
       flash[:error] = t 'messages.login_or_pass_error'
@@ -29,6 +30,7 @@ class UserSessionsController < BaseController
   def destroy
     current_user_session.try(:destroy)
     flash[:notice] = t 'messages.log_out_success'
+    redirect_to home_path
   end
 
   private
@@ -38,6 +40,7 @@ class UserSessionsController < BaseController
 
   def logined?
     unless current_user_session.present?
+      flash[:error] = I18n.t('messages.not_login')
       redirect_to new_user_session_path
     end
   end

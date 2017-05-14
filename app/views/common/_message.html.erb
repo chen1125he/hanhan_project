@@ -3,6 +3,7 @@
   <div class="alert alert-dismissable alert-warning text-center">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <strong></strong> <%= flash[:error]%> &nbsp;<!-- <a href="#" class="alert-link">alert link</a> -->
+    <% flash[:error] = nil%>
   </div>
 </div>
 <% end %>
@@ -11,6 +12,7 @@
   <div class="alert alert-dismissable alert-warning text-center">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <strong></strong> <%= flash[:notice]%> &nbsp;<!-- <a href="#" class="alert-link">alert link</a> -->
+    <% flash[:notice] = nil%>
   </div>
 </div>
 <% end %>

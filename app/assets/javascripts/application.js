@@ -16,3 +16,6 @@
 //= require bootstrap.min
 //= require icheck.min
 //= require common
+//= require fileinput/fileinput.min
+//= require fileinput/locales/zh
+//= require fileinput/themes/explorer/theme

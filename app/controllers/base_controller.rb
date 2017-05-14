@@ -8,7 +8,9 @@ class BaseController < ApplicationController
   # 前台需要登录才能访问的action
   LOGIN_AUTH_ACTION = {
       :posts => [:new, :create, :edit, :update],
-      :comments => [:new, :create]
+      :comments => [:new, :create],
+      :my_posts => [:index],
+      :user_infos => [:edit, :update, :destroy_user_image]
   }
   # 需要记录，并在登录后跳转的页面
   # RECORD_ACTION = {

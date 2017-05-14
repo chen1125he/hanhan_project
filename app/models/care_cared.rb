@@ -1,0 +1,4 @@
+class CareCared < ApplicationRecord
+
+
+end

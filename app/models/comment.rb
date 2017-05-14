@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
 
   belongs_to :post
   belongs_to :user
+  belongs_to :user_info
 
   validates :content, :presence => true
 

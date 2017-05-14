@@ -1,6 +1,9 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
-    <button class="navbar-toggle" type="button" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index.html">首页</a>
+    <button class="navbar-toggle" type="button" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+    <%= link_to home_path, :class => 'navbar-brand' do %>
+        首页
+    <% end %>
   </div>
 
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -25,20 +28,36 @@
       <li class="dropdown">
         <a class="dropdown-toggle" href="#" data-toggle="dropdown">我的<strong class="caret"></strong></a>
         <ul class="dropdown-menu">
-          <li>
-            <a href="my.html">我的帖子</a>
-          </li>
-          <li>
-            <a href="fans.html">我的粉丝</a>
-          </li>
-          <li>
-            <a href="set.html">设置</a>
-          </li>
-          <li class="divider">
-          </li>
-          <li>
-            <a href="exit.html">退出登录</a>
-          </li>
+          <% if current_user.present?%>
+              <li>
+                <%= link_to '我的帖子', my_posts_path%>
+              </li>
+              <li>
+                <a href="fans.html">我的粉丝</a>
+              </li>
+              <li>
+                <a href="set.html">设置</a>
+              </li>
+              <li class="divider">
+              </li>
+              <li>
+                <%= link_to user_sessions_destroy_path, :method => 'delete', :data => {'confirm' => '要退出登录吗？'} do %>
+                    退出登录
+                <% end %>
+              </li>
+          <% else%>
+              <li>
+                <%= link_to new_user_session_path do %>
+                    登录
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_register_path do %>
+                    注册
+                <% end %>
+              </li>
+          <% end %>
+
         </ul>
       </li>
     </ul>

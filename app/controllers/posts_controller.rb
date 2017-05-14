@@ -3,7 +3,7 @@ class PostsController < BaseController
   before_action :get_post, :only => [:show]
 
   def index
-    @posts = Post.includes(:post_picture).all
+    @posts = Post.includes(:post_pictures).all
   end
 
   def show
@@ -39,14 +39,14 @@ class PostsController < BaseController
   end
 
   def save_or_update_picture
-    if params[:post].present? && params[:post][:image].present?
-      picture = @post.post_picture
-      if picture.blank?
+    if params[:images].present?
+      pictures = @post.post_pictures
+      params[:images].each do |image|
         picture = PostPicture.new
         picture.owner = @post
+        picture.image = image
+        pictures << picture
       end
-      picture.image = params[:post][:image]
-      picture.save
     end
     true
   end

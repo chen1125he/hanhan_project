@@ -1,0 +1,132 @@
+<div class="tab-pane active mt20" id="my_posts">
+
+  <%= simple_form_for @user_info, :url => {:controller => 'user_infos', :action => 'update', :id => @user_info.id}, :html => {:multipart => true} do |f|%>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label class="control-label">关注</label>
+            <div class="checkbox">
+              <%user_plate_ids = params[:user_plates].collect { |i| i.to_s } if params[:user_plates].present?%>
+              <%user_plate_ids ||= @user_info.user_info_plates.map(&:plate_id)%>
+              <%@plates && @plates.each do |plate|%>
+                  <div class="checkbox-inline">
+                    <%=check_box_tag 'plates[]', plate.id, user_plate_ids.include?(plate.id), :class =>'flat', :id => "show_plan_#{plate.id}"%>
+                        <label for="show_plan_<%=plate.id%>"><%=plate.name%></label>
+                  </div>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label class="control-label">头像</label>
+            <input type="file" class="file-loading" name="image" id="image"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.input :nick_name, :label => '昵称', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.input :sign, :label => '个性签名', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label class="control-label">性别</label>
+            <div class="radio">
+              <label class="radio-inline">
+                <%=f.radio_button :sex,1, :class => 'flat'%>
+                男
+              </label>
+              <label class="radio-inline">
+                <%=f.radio_button :sex,0, :class => 'flat'%>
+                女
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group <%= 'field_with_errors' if @user_info.errors[:job].present?%>">
+            <label class="control-label" id="job">行业</label>
+            <%= f.select :job, options_for_select(UserInfo::JOB.invert, @user_info.job), {:include_blank => true}, {:class => 'form-control', :id => 'job'}%>
+            <%= f.full_error :job%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.input :city, :label => '城市', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label class="control-label" for="birth">生日</label>
+            <%= f.text_field :birth, :class => 'form-control datepicker', :id => 'birth'%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">保存</button>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+<script type="application/javascript">
+    $(function(){
+
+        var initialPreview = [];
+        var initialPreviewConfig = [];
+        <% if @user_info.user_info_picture.present?%>
+        initialPreview[0] = '<%= @user_info.user_info_picture.image.url(:original) %>';
+        initialPreviewConfig[0] = {caption: '<%= @user_info.user_info_picture.image_file_name %>', size: <%= @user_info.user_info_picture.image_file_size %>, width: "120px", key: <%= @user_info.user_info_picture.id %>};
+        <% end %>
+
+        $("#image").fileinput({
+            'theme': 'explorer',
+            initialPreview: initialPreview,
+            initialPreviewConfig: initialPreviewConfig,
+            uploadUrl: '#',
+            //            uploadUrl: '<%#= file_upload_path %>',
+                        deleteUrl: '<%= user_info_destroy_user_image_path(@user_info) %>',
+            initialPreviewAsData: true, //预览方式
+            allowedFileExtensions : ['jpg', 'png','gif', 'bmp'], //限制文件格式
+            //allowedFileTypes: ["image"],
+            overwriteInitial: false, //追加的方式添加
+            autoReplace: false,
+            showUpload: false,
+            showCaption: true,
+            showRemove: true,
+            uploadAsync: false,
+            language: 'zh', //语言
+            maxFileSize: 2000, //图片大小(kb)
+            maxFileCount: 1, //图片数量
+            maxFilePreviewSize: 10240,
+            dropZoneEnabled: false
+        }).on('fileselect', function(event, numFiles, label) {
+            setTimeout(function () {
+                $('button.kv-file-upload').hide();
+            }, 30);
+        });
+        $('button.fileinput-remove-button').hide();
+        $('div.fileinput-remove').hide();
+    })
+</script>

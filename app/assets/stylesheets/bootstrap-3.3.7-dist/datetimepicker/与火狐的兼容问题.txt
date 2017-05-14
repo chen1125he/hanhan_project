@@ -1,0 +1,5 @@
+可能会报错：TypeError: (intermediate value).toString(...).split(...)[1] is undefined
+但我碰到的时候没有报那个错误
+	将插件中的this.defaultTimeZone=(new Date).toString().split("(")[1].slice(0, -1);改成this.defaultTimeZone='GMT'+(new Date()).getTimezoneOffset()/60;
+	
+http://www.cnblogs.com/lhyhappy65/p/5629630.html

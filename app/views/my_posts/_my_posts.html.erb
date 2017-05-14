@@ -1,0 +1,27 @@
+<p>    </p>
+<div class="row">
+  <% if params[:more] == "1"%>
+      <%= render 'post_common/lines_per_6', :posts => my_posts%>
+  <% else %>
+      <%= render 'post_common/line_per_3', :posts => my_posts%>
+  <% end %>
+</div>
+<div class="row">
+  <% if params[:more] == "1"%>
+      <div class="col-md-2">
+        <%= link_to '新建帖子', new_post_path, :class => 'btn btn-default', :style => "margin: 20px 0;"%>
+        <%#= link_to '更多', {:controller => :my_posts, :action => :index, :more => '1'}, :class => 'btn btn-default', :style => "margin: 20px 0;"%>
+      </div>
+      <div class="col-md-10 text-right">
+        <%= paginate my_posts, :params => {:controller => :my_posts, :action => :index}, :remote => true%>
+      </div>
+  <% else %>
+      <div class="col-md-2">
+        <%= link_to '新建帖子', new_post_path, :class => 'btn btn-default', :style => "margin: 20px 0;"%>
+        <%= link_to '更多', {:controller => :my_posts, :action => :index, :more => '1'}, :class => 'btn btn-default', :style => "margin: 20px 0;"%>
+      </div>
+      <!--<div class="col-md-10 text-right">-->
+        <!--<%= paginate my_posts, :params => {:controller => :my_posts, :action => :index}, :remote => true%>-->
+      <!--</div>-->
+  <% end %>
+</div>

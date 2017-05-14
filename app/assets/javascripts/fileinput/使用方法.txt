@@ -1,0 +1,50 @@
+1.依赖
+	bootstrap.min.css
+	fileinput.css
+	theme/explorer/theme.css
+	jquery-2.0.0.js
+	bootstrap.min.js
+	fileinput.js
+	explorer/theme.js
+	locals/zh.js 使用时必须要引入然后配置
+	
+2.<input id="test_file" name="images[]" type="file" multiple class="file-loading">
+	加上multiple决定可以上传多张图片
+	
+3.
+	$(function(){
+		
+		var initialPreview = [];
+        var initialPreviewConfig = [];
+		// initialPreview[<%= index %>] = '<%= picture.image.url(:original) %>';
+        // initialPreviewConfig[<%= index %>] = {caption: '<%= picture.image_file_name %>', size: <%= picture.image_file_size %>, width: "120px", key: <%= picture.id %>};
+		
+			$("#test_file").fileinput({
+				'theme': 'explorer',
+				initialPreview: initialPreview,
+				initialPreviewConfig: initialPreviewConfig,
+				uploadUrl: '#',
+	//            uploadUrl: '<%#= file_upload_path %>',
+	//            deleteUrl: '<%= file_delete_path %>',
+				initialPreviewAsData: true, //预览方式
+				allowedFileExtensions : ['jpg', 'png','gif', 'bmp'], //限制文件格式
+	            //allowedFileTypes: ["image"],
+				overwriteInitial: false, //追加的方式添加
+				autoReplace: false,
+				showUpload: false,
+				showCaption: true,
+				showRemove: true,
+				uploadAsync: false,
+				language: 'zh', //语言
+				maxFileSize: 2000, //图片大小(kb)
+				maxFileCount: 10, //图片数量
+				maxFilePreviewSize: 10240,
+				dropZoneEnabled: false
+			}).on('fileselect', function(event, numFiles, label) {
+				setTimeout(function () {
+					$('button.kv-file-upload').hide();
+				}, 30);
+			});
+			$('button.fileinput-remove-button').hide();
+			$('div.fileinput-remove').hide();
+		})

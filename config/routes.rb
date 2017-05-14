@@ -12,7 +12,19 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :my_posts do
+  end
+
+  resources :care_careds
+
+  delete 'user_sessions/destroy', :to => 'user_sessions#destroy'
   resources :user_sessions
+
+  get 'user_infos/edit', :to => 'user_infos#edit'
+  # get 'user_infos/:key/destroy_user_image', :to => 'user_infos#destroy_user_image'
+  resources :user_infos do
+    match 'destroy_user_image', :via => [:post]
+  end
 
 
   namespace :admin do

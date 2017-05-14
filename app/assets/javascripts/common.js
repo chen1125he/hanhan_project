@@ -10,6 +10,13 @@ $(function(){
         checkboxClass : 'icheckbox_flat',
         radioClass : 'iradio_flat'
     });
+    $(".datepicker").datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        forceParse: true,
+        minView: 'month',
+        language: 'cn'
+    });
 })
 
 function img_preview(file, img_container){

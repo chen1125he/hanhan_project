@@ -56,3 +56,4 @@ gem 'simple_form'
 gem 'kaminari'
 
 gem 'cocaine', '0.5.5'
+

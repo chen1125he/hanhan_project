@@ -71,6 +71,17 @@ td, th{
 }
 
 /* img 居中显示 */
+.my_post_box{
+    width: 360px;
+    height: 120px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.my_post_box img{
+    max-width: 360px;
+    max-height: 115px;
+}
 .show_post_box{
     width: 300px;
     height: 100px;
@@ -107,6 +118,19 @@ td, th{
     max-height: 190px;
 }
 
+.user_image{
+    width: 64px;
+    height: 64px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+.user_image img{
+    max-width: 64px;
+    max-height: 64px;
+}
+
 #loading{
     position:fixed;
     width:100%;
@@ -115,4 +139,11 @@ td, th{
     opacity: 0.5;
     z-index: 10;
     display: none;
+}
+
+/* 显示时间 */
+.post_show_time{
+    color: #A8A8A8;
+    text-align: right;
+    display: block;
 }

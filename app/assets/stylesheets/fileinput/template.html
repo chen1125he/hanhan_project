@@ -1,0 +1,100 @@
+﻿<html>
+	<head>
+		<title></title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap-3.3.7-dist/js/fileinput/themes/fileinput.scss" rel="stylesheet">
+		<link href="bootstrap-3.3.7-dist/js/fileinput/themes/explorer/theme.scss" rel="stylesheet">
+		<link href="content.css" rel="stylesheet">
+		<script src="jquery-2.0.0.min.js" type="application/javascript"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.0.1/js/bootstrap.min.js" type="application/javascript"></script>
+		<script src="bootstrap-3.3.7-dist/js/fileinput/fileinput.js" type="application/javascript"></script>
+		<script src="bootstrap-3.3.7-dist/js/fileinput/themes/explorer/theme.js" type="application/javascript"></script>
+		<script src="bootstrap-3.3.7-dist/js/fileinput/locales/zh.js" type="application/javascript"></script>
+		<script src="bootstrap-3.3.7-dist/js/fileinput/plugins/sortable.js" type="application/javascript"></script>
+		
+		
+	</head>
+	<body class="login">
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4 text-center">
+				<div class="picture-view-box">
+					<div id="preview2" class="picture-preview">
+						
+					</div>
+					<div id="preview" class="picture-preview">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+			<div class="form-group">
+				<input id="test_file" name="images[]" type="file" multiple class="file-loading">
+				<!-- <input type="file" id="test_file" name="images2[]" /> -->
+			</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label class="control_label">选择文件</label>                             
+					<input id="" type="file" class="" name="file_execl" onchange="preview(this)"/>  
+				</div>
+			</div>
+		</div>
+		<div class="row mt20">
+			<div class="col-md-12 text-center">
+				2017 © Copyright(C) ZongHanhan. All Rights Reserved.
+			</div>
+		</div>
+	</body>
+	
+	<script>
+		$(function(){
+		
+		var initialPreview = [];
+        var initialPreviewConfig = [];
+			$("#test_file").fileinput({
+				'theme': 'explorer',
+				initialPreview: initialPreview,
+				initialPreviewConfig: initialPreviewConfig,
+				uploadUrl: '#',
+	//            uploadUrl: '<%#= file_upload_path %>',
+	//            deleteUrl: '<%= file_delete_path %>',
+				initialPreviewAsData: true, //预览方式
+				allowedFileExtensions : ['jpg', 'png','gif', 'bmp'], //限制文件格式
+	            //allowedFileTypes: ["image"],
+				overwriteInitial: false, //追加的方式添加
+				autoReplace: false,
+				showUpload: false,
+				showCaption: true,
+				showRemove: true,
+				uploadAsync: false,
+				language: 'zh', //语言
+				maxFileSize: 2000, //图片大小(kb)
+				maxFileCount: 10, //图片数量
+				maxFilePreviewSize: 10240,
+				dropZoneEnabled: false
+			}).on('fileselect', function(event, numFiles, label) {
+				setTimeout(function () {
+					$('button.kv-file-upload').hide();
+				}, 30);
+			});
+			$('button.fileinput-remove-button').hide();
+			$('div.fileinput-remove').hide();
+		})
+		function preview(file){
+				var prevDiv = document.getElementById('preview');
+				if (file.files && file.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(evt){
+						prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+					}
+					reader.readAsDataURL(file.files[0]);
+				}else{
+					prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+				}
+				}
+	</script>
+</html>
