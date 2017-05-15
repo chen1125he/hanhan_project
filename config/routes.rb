@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
     resources :plates
 
+    resources :notices
+
 
   end
 end

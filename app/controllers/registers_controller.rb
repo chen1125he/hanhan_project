@@ -16,6 +16,10 @@ class RegistersController < BaseController
       @user_info.save
       unless @user.save
         render 'new'
+        raise ActiveRecord::Rollback
+      else
+        flash[:notice] = I18n.t('messages.register_success')
+        redirect_to home_path
       end
     end
   end

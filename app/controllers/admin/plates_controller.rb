@@ -13,6 +13,7 @@ class Admin::PlatesController < ApplicationController
   def create
     @plate = Plate.new(get_params)
     if @plate.save
+      flash[:notice] = I18n.t('messages.save_success')
       redirect_to :action => :index
     else
       flash[:error] = I18n.t('messages.save_failed')

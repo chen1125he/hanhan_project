@@ -53,6 +53,7 @@ en:
     login_success: '登录成功！'
     update_success: '更新成功！'
     update_faild: '更新失败！'
+    register_success: '注册成功！'
 
   error:
     too_short: '太短'

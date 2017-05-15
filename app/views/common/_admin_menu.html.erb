@@ -13,6 +13,8 @@
     <a href="#panel-173252" >帖子管理</a>
   </li>
   <li class="<%= admin_menu_active :notices%>">
-    <a href="#panel-173252" >通知管理</a>
+    <%= link_to admin_notices_path do %>
+        通知管理
+    <% end %>
   </li>
 </ul>

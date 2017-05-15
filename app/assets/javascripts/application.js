@@ -19,3 +19,7 @@
 //= require fileinput/fileinput.min
 //= require fileinput/locales/zh
 //= require fileinput/themes/explorer/theme
+//= require bootstrap/daterangepicker
+//= require bootstrap/bootstrap-datepicker
+//= require bootstrap/dp-zh.js
+//= require bootstrap/moment.min

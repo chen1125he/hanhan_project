@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.input :title, :label => '标题', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}, :required => false%>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="control-label">显示状态</label>
+      <div class="radio">
+        <label class="radio-inline">
+          <%=f.radio_button :show_flag,true, :class => 'flat'%>
+          显示
+        </label>
+        <label class="radio-inline">
+          <%=f.radio_button :show_flag,false, :class => 'flat'%>
+          不显示
+        </label>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <input type="text" class="form-control" id="daterangepicker" />
+      <%#= f.input :title, :label => '标题', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}, :required => false%>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="info" class="control-label">内容</label>
+      <%= f.text_area :content, :class => 'ckeditor form-control text_field_re_v', :id => 'form-control' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-success" type="submit">保存</button>
+  </div>
+</div>
+<%= javascript_include_tag '/plugins/ckeditor/ckeditor' %>
+<%= javascript_include_tag '/plugins/ckeditor/adapters/jquery' %>
+
+<script type="text/javascript">
+    var runCKEditor = function() {
+        CKEDITOR.disableAutoInline = true;
+        $('textarea.ckeditor').ckeditor();
+    };
+    $(function(){
+    runCKEditor();
+    });
+
+    $(function() {
+        $('#daterangepicker').daterangepicker({
+            applyClass : 'btn-sm btn-success',
+            cancelClass : 'btn-sm btn-default',
+            locale: {
+                applyLabel: '确认',
+                cancelLabel: '取消',
+                fromLabel : '起始时间',
+                toLabel : '结束时间',
+                customRangeLabel : '自定义',
+                firstDay : 1
+            },
+            ranges : {
+                //'最近1小时': [moment().subtract('hours',1), moment()],
+                '今日': [moment().startOf('day'), moment()],
+                '昨日': [moment().subtract('days', 1).startOf('day'), moment().subtract('days', 1).endOf('day')],
+                '最近7日': [moment().subtract('days', 6), moment()],
+                '最近30日': [moment().subtract('days', 29), moment()],
+                '本月': [moment().startOf("month"),moment().endOf("month")],
+                '上个月': [moment().subtract(1,"month").startOf("month"),moment().subtract(1,"month").endOf("month")]
+            },
+            opens : 'right',    // 日期选择框的弹出位置
+            separator : ' 至 ',
+            showWeekNumbers : true,     // 是否显示第几周
+
+
+            //timePicker: true,
+            //timePickerIncrement : 10, // 时间的增量，单位为分钟
+            //timePicker12Hour : false, // 是否使用12小时制来显示时间
+
+
+            //maxDate : moment(),           // 最大时间
+            format: 'YYYY-MM-DD'
+
+        }, function(start, end, label) { // 格式化日期显示框
+            $('#beginTime').val(start.format('YYYY-MM-DD'));
+            $('#endTime').val(end.format('YYYY-MM-DD'));
+        })
+                .next().on('click', function(){
+                    $(this).prev().focus();
+                });
+    });
+
+    /**
+     * 清除时间
+     */
+    function begin_end_time_clear()
+    {
+        $('#dateTimeRange').val('');
+        $('#beginTime').val('');
+        $('#endTime').val('');
+    }
+</script>
