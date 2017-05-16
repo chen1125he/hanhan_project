@@ -5,31 +5,31 @@
   </p>
 
   <p class="">
-    <button class="pull-right btn btn-success" onclick="location='<%= new_admin_plate_path %>'">新建板块</button>
+    <button class="pull-right btn btn-success" onclick="location='<%= new_admin_notice_path %>'">新建板块</button>
   </p>
   <table class="color_table table">
     <thead>
     <tr>
       <th width="10%" class="center">序号</th>
-      <th width="20%" class="center">板块名</th>
+      <th width="20%" class="center">标题</th>
       <th width="10%" class="center">显示状态</th>
-      <th class="center">板块信息</th>
+      <th class="center">内容</th>
       <th width="20%" class="center">操作</th>
     </tr>
     </thead>
     <tbody>
-    <% if @plates.present?%>
-        <% @plates.each_with_index  do |plate, index|%>
+    <% if @notices.present?%>
+        <% @notices.each_with_index  do |notice, index|%>
             <tr>
               <td class="center"><%= index + 1 %></td>
-              <td class="center"><%= plate.name %></td>
-              <td class="center"><%= Plate::SHOW_FLAG[plate.show_flag]%></td>
-              <td><%= replace_br(plate.info)%></td>
+              <td class="center"><%= notice.title %></td>
+              <td class="center"><%= Notice::SHOW_FLAG[notice.show_flag]%></td>
+              <td><%= notice.content.html_safe%></td>
               <td class="center">
-                <%= link_to edit_admin_plate_path(plate), :class => 'btn btn-primary' do %>
+                <%= link_to edit_admin_notice_path(notice), :class => 'btn btn-primary' do %>
                     编辑
                 <% end %>
-                <%= link_to '删除', admin_plate_path(plate),  :class => 'btn btn-primary',:method => 'delete', :data => {'confirm' => '确定删除吗？'} %>
+                <%= link_to '删除', admin_notice_path(notice),  :class => 'btn btn-primary',:method => 'delete', :data => {'confirm' => '确定删除吗？'} %>
 
               </td>
         <% end %>
@@ -40,6 +40,6 @@
     <% end %>
     </tbody>
   </table>
-  <%= paginate @plates%>
+  <%= paginate @notices%>
 </div>
 

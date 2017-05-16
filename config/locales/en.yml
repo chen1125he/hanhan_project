@@ -81,6 +81,8 @@ en:
         password_confirmation: '密码确认'
       plate:
         name: '板块名'
+      notice:
+        title: '标题'
       post:
         title: '标题'
         plate_id: '板块名'

@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(version: 20170515074415) do
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.text     "content",    limit: 65535
-    t.boolean  "show_flag",                default: true
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.text     "content",      limit: 65535
+    t.boolean  "show_flag",                  default: true
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "floor_num"
-    t.boolean  "deleted",                  default: false
+    t.boolean  "deleted",                    default: false
+    t.integer  "user_info_id"
   end
 
   create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

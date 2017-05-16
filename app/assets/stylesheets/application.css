@@ -15,4 +15,5 @@
  *= require skins/flat/flat.css
  *= require fileinput/themes/fileinput.min
  *= require fileinput/themes/explorer/theme
+ *= require bootstrap-3.3.7-dist/daterangepicker
  */

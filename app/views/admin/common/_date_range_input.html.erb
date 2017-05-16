@@ -1,0 +1,14 @@
+<%# 新规更新时需要输入date_range的表单%>
+<%#= render 'admin/common/date_range_input', model: @model, f: f%>
+<% date_range_has_error = model.errors[:base].present? || model.errors[:show_from].present? || model.errors[:show_to].present?%>
+<div class="form-group <%= date_range_has_error ? 'has-error' : ''%>">
+  <label class="control-label">表示期間</label>
+  <div class="input-group">
+    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+    <%show_date = params[:show_date].present? ? params[:show_date] : ((model.new_record? ? '': (model.show_from && model.show_to) ? "#{model.show_from} - #{model.show_to}" : ''))%>
+    <%= text_field_tag :show_date, show_date, :class => "form-control date-range #{date_range_has_error ? 'error-date-range' : '' }", :data => {'date-format' => 'yyyy-mm-dd', 'date-viewmode' => 'years'}%>
+  </div>
+  <%= f.error :base, :class => 'error'%>
+  <%= f.full_error :show_from, :class => 'error'%>
+  <%= f.full_error :show_to, :class => 'error'%>
+</div>
