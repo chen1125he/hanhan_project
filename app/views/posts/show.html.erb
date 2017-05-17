@@ -26,11 +26,11 @@
   </div>
 </div>
 <div class="row mt20 mb40">
-    <a href="">
-      <%= image_tag 'good.png'%>
-    </a>
-  <%= link_to new_post_comment_path(@post), :remote => true do%>
-      <%= image_tag 'comment.png'%>
+  <%= link_to "#{say_good_posts_path}?id=#{@post.id}", :method => :post, :class => 'btn btn-default btn-sm', :remote => true do%>
+      赞
+  <% end %>
+  <%= link_to new_post_comment_path(@post), :class => 'btn btn-default btn-sm', :remote => true do%>
+      评论
   <% end %>
 </div>
 <div class="container">

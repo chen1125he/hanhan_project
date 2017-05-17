@@ -28,15 +28,15 @@ en:
       previous: "&lsaquo; 上一页"
       next: "下一页 &rsaquo;"
       truncate: "&hellip;"
-    helpers:
-      page_entries_info:
-        one_page:
-          display_entries:
-            zero: "No %{entry_name} found"
-            one: "Displaying <b>1</b> %{entry_name}"
-            other: "Displaying <b>all %{count}</b> %{entry_name}"
-        more_pages:
-          display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "没有添加 %{entry_name} "
+          one: "当前页 <b>1</b>条 %{entry_name} 被显示"
+          other: "当前页 <b> %{count}条</b> %{entry_name} 被显示"
+      more_pages:
+        display_entries: "当前页 <b>%{first}&nbsp;-&nbsp;%{last}</b> 条 %{entry_name} 被显示，共 <b>%{total}</b> 条"
   messages:
     login_or_pass_error: '用户名或密码错误！'
     login_limited: '您的账号被限制登录！'
@@ -70,6 +70,8 @@ en:
   activerecord: &activerecord_messages
     models:
       user: '用户'
+      notice: '通知'
+      plate: '板块'
     attributes:
       user_info:
         nick_name: '昵称'

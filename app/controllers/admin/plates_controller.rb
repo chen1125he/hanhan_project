@@ -3,7 +3,7 @@ class Admin::PlatesController < ApplicationController
   before_action :set_plate, :only => [:edit, :update, :destroy]
 
   def index
-    @plates = Plate.all.page(params[:page]).per(PER_PAGE).order(:id)
+    @plates = Plate.all.page(params[:page]).per(PER_PAGE).order(:updated_at => :desc)
   end
 
   def new

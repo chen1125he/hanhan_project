@@ -13,7 +13,7 @@
       <th width="10%" class="center">序号</th>
       <th width="20%" class="center">标题</th>
       <th width="10%" class="center">显示状态</th>
-      <th class="center">内容</th>
+      <th class="center">显示时间</th>
       <th width="20%" class="center">操作</th>
     </tr>
     </thead>
@@ -24,7 +24,7 @@
               <td class="center"><%= index + 1 %></td>
               <td class="center"><%= notice.title %></td>
               <td class="center"><%= Notice::SHOW_FLAG[notice.show_flag]%></td>
-              <td><%= notice.content.html_safe%></td>
+              <td class="center"><%= notice.get_date%></td>
               <td class="center">
                 <%= link_to edit_admin_notice_path(notice), :class => 'btn btn-primary' do %>
                     编辑
@@ -40,6 +40,7 @@
     <% end %>
     </tbody>
   </table>
+  <p><%= page_entries_info @notices%></p>
   <%= paginate @notices%>
 </div>
 

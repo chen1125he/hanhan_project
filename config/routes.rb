@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get '/posts/:id/comments/new', :to => 'comments#new'
   post '/posts/:id/comments', :to => 'comments#create'
   resources :posts do
+    collection do
+      match :say_good, :via => [:post]
+    end
+
     resources :comments do
     end
   end

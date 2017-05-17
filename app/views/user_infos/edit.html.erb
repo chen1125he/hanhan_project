@@ -1,3 +1,11 @@
+<style>
+    .radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline{
+        margin: 0;
+    }
+    .radio-inline label, .checkbox-inline label{
+        padding: 0;
+    }
+</style>
 <div class="tab-pane active mt20" id="my_posts">
 
   <%= simple_form_for @user_info, :url => {:controller => 'user_infos', :action => 'update', :id => @user_info.id}, :html => {:multipart => true} do |f|%>

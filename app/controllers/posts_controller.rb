@@ -1,6 +1,6 @@
 class PostsController < BaseController
 
-  before_action :get_post, :only => [:show]
+  before_action :get_post, :only => [:show, :say_good]
 
   def index
     @posts = Post.includes(:post_pictures).all
@@ -8,6 +8,7 @@ class PostsController < BaseController
 
   def show
     @comments = Comment.show_comment @post.id, params
+    @post.update_read_num request.remote_ip, current_user
     respond_to do |format|
       format.html {}
       format.js {}
@@ -33,6 +34,11 @@ class PostsController < BaseController
     end
   end
 
+  # 更新点赞数,点赞需要用户登录
+  def say_good
+    @post.update_good_num
+  end
+
   private
   def get_params
     strip params.fetch(:post).permit(:title, :content, :detail, :plate_id)
@@ -55,8 +61,9 @@ class PostsController < BaseController
     @post = Post.show_post.where(:id => params[:id]).first
     unless @post.present?
       respond_to do |format|
-        format.js{}
-        format.html{flash[:notice] = I18n.t'messages.no_data';redirect_to posts_path}
+        flash[:notice] = I18n.t'messages.no_data'
+        format.js{render :js => "location.href='#{posts_path}'"}
+        format.html{redirect_to posts_path}
       end
     end
   end
