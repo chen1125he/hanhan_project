@@ -26,9 +26,11 @@
   </div>
 </div>
 <div class="row mt20 mb40">
-  <%= link_to "#{say_good_posts_path}?id=#{@post.id}", :method => :post, :class => 'btn btn-default btn-sm', :remote => true do%>
-      赞
-  <% end %>
+  <span id="say_good_or_not">
+      <%= link_to "#{say_good_posts_path}?id=#{@post.id}", :method => :post, :class => 'btn btn-default btn-sm', :remote => true do%>
+          赞
+      <% end %>
+  </span>
   <%= link_to new_post_comment_path(@post), :class => 'btn btn-default btn-sm', :remote => true do%>
       评论
   <% end %>

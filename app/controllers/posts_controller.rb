@@ -36,7 +36,11 @@ class PostsController < BaseController
 
   # 更新点赞数,点赞需要用户登录
   def say_good
-    @post.update_good_num
+    @good_flag = @post.update_good_num request.remote_ip, current_user
+  end
+
+  def cancel_admit
+    @good_flag = @post.update_good_num request.remote_ip, current_user, true
   end
 
   private

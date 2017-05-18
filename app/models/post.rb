@@ -41,7 +41,7 @@ class Post < ApplicationRecord
   end
 
   # 更新点赞数,点赞需要用户登录
-  def update_good_num ip = "", user = nil
+  def update_good_num ip = "", user = nil, cancel_flag = false
     conn = [[]]
     return false if ip.blank? || user.blank?
 
@@ -58,8 +58,14 @@ class Post < ApplicationRecord
       PostGoodNum.transaction do
         read_num = PostGoodNum.new(:ip => ip, :user_id => user.try(:id), :post_id => self.id)
         read_num.save(validate: false)
-        self.update_attribute(:good_num, self.good_num.to_i + 1)
+        self.update_attribute(:good_num, self.post_good_nums.count)
       end
     end
+    # 取消点赞
+    if cancel_flag && read_num.present?
+      read_num.destroy
+      self.update_attribute(:good_num, self.post_good_nums.count)
+    end
+    self.post_good_nums.count
   end
 end
