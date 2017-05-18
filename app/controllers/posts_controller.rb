@@ -1,6 +1,6 @@
 class PostsController < BaseController
 
-  before_action :get_post, :only => [:show, :say_good]
+  before_action :get_post, :only => [:show, :say_good, :cancel_say_good]
 
   def index
     @posts = Post.includes(:post_pictures).all
@@ -39,8 +39,8 @@ class PostsController < BaseController
     @good_flag = @post.update_good_num request.remote_ip, current_user
   end
 
-  def cancel_admit
-    @good_flag = @post.update_good_num request.remote_ip, current_user, true
+  def cancel_say_good
+    @cancel_good_flag = @post.update_good_num request.remote_ip, current_user, true
   end
 
   private

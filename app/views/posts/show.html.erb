@@ -27,9 +27,11 @@
 </div>
 <div class="row mt20 mb40">
   <span id="say_good_or_not">
-      <%= link_to "#{say_good_posts_path}?id=#{@post.id}", :method => :post, :class => 'btn btn-default btn-sm', :remote => true do%>
-          赞
-      <% end %>
+    <% if be_said_good%>
+      <%= render 'post_common/cancel_say_good'%>
+    <% else %>
+      <%= render 'post_common/say_good' %>
+    <% end %>
   </span>
   <%= link_to new_post_comment_path(@post), :class => 'btn btn-default btn-sm', :remote => true do%>
       评论

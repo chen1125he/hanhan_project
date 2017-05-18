@@ -1,3 +1,3 @@
-<%= link_to "#{say_good_posts_path}?id=#{@post.id}", :method => :post, :class => 'btn btn-default btn-sm', :remote => true do%>
-    赞
+<%= link_to "#{cancel_say_good_posts_path}?id=#{@post.id}", :method => :post, :class => 'btn btn-default btn-sm', :remote => true do%>
+    取消赞(<%= @post.good_num%>)
 <% end %>

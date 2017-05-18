@@ -34,7 +34,7 @@ class Post < ApplicationRecord
     unless read_num.present?
       PostReadNum.transaction do
         read_num = PostReadNum.new(:ip => ip, :user_id => user.try(:id), :post_id => self.id)
-        read_num.save(validate: false)
+        read_num.save(:validate => false)
         self.update_attribute(:read_num, self.read_num.to_i + 1)
       end
     end
@@ -57,7 +57,7 @@ class Post < ApplicationRecord
     unless read_num.present?
       PostGoodNum.transaction do
         read_num = PostGoodNum.new(:ip => ip, :user_id => user.try(:id), :post_id => self.id)
-        read_num.save(validate: false)
+        read_num.save(:validate => false)
         self.update_attribute(:good_num, self.post_good_nums.count)
       end
     end

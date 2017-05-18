@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       match :say_good, :via => [:post]
-      match :cancel_good, :via => [:post]
+      match :cancel_say_good, :via => [:post]
     end
 
     resources :comments do

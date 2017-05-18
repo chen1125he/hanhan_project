@@ -7,7 +7,7 @@ class BaseController < ApplicationController
 
   # 前台需要登录才能访问的action
   LOGIN_AUTH_ACTION = {
-      :posts => [:new, :create, :edit, :update, :say_good],
+      :posts => [:new, :create, :edit, :update, :say_good, :cancel_say_good],
       :comments => [:new, :create],
       :my_posts => [:index],
       :user_infos => [:edit, :update, :destroy_user_image]

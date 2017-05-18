@@ -18,4 +18,10 @@ module ApplicationHelper
       time.strftime("%Y-%m-%d")
     end
   end
+
+  def be_said_good
+    return false if current_user.blank?
+    return false if PostGoodNum.where(:post_id => @post.id, :user_id => current_user.try(:id)).blank?
+    true
+  end
 end

@@ -16,6 +16,6 @@ class Comment < ApplicationRecord
   end
 
   def self.show_comment post_id = nil, params = nil
-    Comment.where(:post_id => post_id).where('comments.floor_num is not null').order(:floor_num).page(params[:page]).per(PER)
+    Comment.includes(:user_info, :user).where(:post_id => post_id).where('comments.floor_num is not null').order(:floor_num).page(params[:page]).per(PER)
   end
 end
