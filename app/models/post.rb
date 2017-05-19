@@ -10,6 +10,11 @@ class Post < ApplicationRecord
   validates :title, :presence => true
   validates :plate_id, :presence => true
 
+  POST_STATUS = {
+      1 => '新建',
+      2 => '用户删除',
+      3 => '管理员屏蔽'
+  }
 
   def self.show_post
     where(:show_flag => true, :user_deleted_flag => false).order('posts.updated_at desc')

@@ -1,4 +1,9 @@
 <ul class="nav nav-tabs">
+  <li class="<%= admin_menu_active :posts%>">
+    <%= link_to admin_posts_path do%>
+        帖子管理
+    <% end %>
+  </li>
   <li class="<%= admin_menu_active :users%>">
     <%= link_to  do%>
         用户管理
@@ -8,9 +13,6 @@
     <%= link_to admin_plates_path do %>
         板块管理
     <% end %>
-  </li>
-  <li class="<%= admin_menu_active :posts%>">
-    <a href="#panel-173252" >帖子管理</a>
   </li>
   <li class="<%= admin_menu_active :notices%>">
     <%= link_to admin_notices_path do %>
