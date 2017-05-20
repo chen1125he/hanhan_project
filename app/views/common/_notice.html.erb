@@ -1,5 +1,7 @@
 <% if notice.present?%>
+    <%pp notice%>
 <div class="notice">
+  <%p notice.content%>
   <%= notice.content.html_safe%>
 </div>
 <% end %>

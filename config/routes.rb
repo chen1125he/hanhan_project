@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
   resources :my_comments
 
+  get 'users/edit', :to => 'users#edit'
+  resources :users
+
   resources :care_careds
 
   delete 'user_sessions/destroy', :to => 'user_sessions#destroy'

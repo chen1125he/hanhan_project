@@ -53,7 +53,7 @@ class Admin::NoticesController < ApplicationController
   end
 
   def set_notice
-    @notice = Notice.where(id: params[:id]).first
+    @notice = Notice.where(:id => params[:id]).first
     unless @notice.present?
       flash[:notice] = I18n.t('messages.no_data')
       redirect_to admin_notices_path

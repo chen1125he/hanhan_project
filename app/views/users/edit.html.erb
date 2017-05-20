@@ -1,0 +1,34 @@
+<div class="tab-pane active mt20" id="my_password">
+
+  <%= simple_form_for @user, :url => {:controller => 'users', :action => 'update', :id => @user_info.id}, :html => {:multipart => true} do |f|%>
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.input :pre_password, :label => '原密码', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.input :password, :label => '新密码', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.input :password_confirmation, :label => '密码确认', :label_html => {:class => 'control-label'}, :input_html => {:class => 'form-control'}%>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">保存</button>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
