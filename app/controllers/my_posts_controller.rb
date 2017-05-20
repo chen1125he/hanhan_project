@@ -8,7 +8,7 @@ class MyPostsController < BaseController
   end
 
   def destroy
-    @my_post.update_attribute(:user_deleted_flag, true)
+    @my_post.update_attribute(:post_status, 2)
     flash[:notice] = I18n.t('messages.delete_success')
     redirect_to :action => :index
   end

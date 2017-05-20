@@ -1,6 +1,7 @@
 
 .pt100{padding-top: 100px;}
 .mt100{margin-top: 100px;}
+.mt50{margin-top:50px;}
 .mt20{margin-top:20px;}
 .mt10{margin-top:10px;}
 .mb50{margin-bottom: 50px;}
@@ -146,4 +147,33 @@ td, th{
     color: #A8A8A8;
     text-align: right;
     display: block;
+}
+/* 显示时间 */
+.comment_show_time{
+    color: #A8A8A8;
+    text-align: right;
+    display: block;
+    font-size: 12px;
+}
+/* 显示点赞评论 */
+.post_show_message{
+    color: #A8A8A8;
+    text-align: right;
+    display: block;
+}
+
+/* 显示我的评论 3行溢出省略*/
+.my_comment_display{
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
+}
+.comment_content{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+/* 字体颜色 */
+.font_grey{
+    color: #989898;
 }

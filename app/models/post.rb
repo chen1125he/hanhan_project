@@ -13,11 +13,14 @@ class Post < ApplicationRecord
   POST_STATUS = {
       1 => '新建',
       2 => '用户删除',
-      3 => '管理员屏蔽'
+      3 => '管理员屏蔽',
+      4 => '管理员恢复'
+
   }
 
   def self.show_post
-    where(:show_flag => true, :user_deleted_flag => false).order('posts.updated_at desc')
+    # where(:show_flag => true, :user_deleted_flag => false).order('posts.updated_at desc')
+    where(:post_status => [1, 4]).order('posts.updated_at desc')
   end
 
 

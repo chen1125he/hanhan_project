@@ -15,7 +15,15 @@ module ApplicationHelper
     if time.strftime("%Y-%m-%d") == Time.now.strftime("%Y-%m-%d")
       time.strftime("%H:%M:%S")
     else
-      time.strftime("%Y-%m-%d")
+      time.strftime("%Y/%m/%d")
+    end
+  end
+
+  def comment_show_time time
+    if time.strftime("%Y").to_i == Time.now.strftime("%Y").to_i
+      time.strftime("%m/%d %H:%M:%S")
+    else
+      time.strftime("%Y/%m/%d %H:%M:%S")
     end
   end
 

@@ -1,0 +1,1 @@
+$(".user"+ <%= params[:id]%> +" .care_link").html("<%= j(render "user_common/care", :user_info_id => params[:id])%>");

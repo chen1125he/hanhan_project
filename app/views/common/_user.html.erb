@@ -1,18 +1,26 @@
-<% if current_user.present?%>
-<div class="col-md-12">
-<div class="media">
+<div class="media  <%= "user#{user_info.try(:id)}"%>">
   <a class="pull-left" href="#">
     <div class="user_image">
-    <%= image_tag current_user_info.try(:get_user_image)%>
+      <%= image_tag user_info.try(:get_user_image)%>
     </div>
   </a>
   <div class="media-body">
     <h4 class="media-heading">
-      <%= current_user_info.try(:nick_name)%>
-    </h4><p>
-    <%= current_user_info.try(:sign)%><br /> 28 关注| 26 粉丝
-  </p>
+      <%= user_info.try(:nick_name)%>
+    </h4>
+    <p>
+      <%= user_info.try(:sign)%><br />
+                  <span class="care_link">
+                    <% if current_user.try(:id) == user.try(:id)%>
+
+                    <% elsif current_user_info.try(:has_cared, (user_info.try(:id)))  %>
+                        <%= render "user_common/cancel_care", :user_info_id => user_info.try(:id)%>
+                    <% else %>
+                        <%= render "user_common/care", :user_info_id => user_info.try(:id)%>
+                    <% end %>
+                  </span>
+      <%= user_info.try(:cared_num)%> 粉丝
+    </p>
   </div>
 </div>
-</div>
-<% end %>
+

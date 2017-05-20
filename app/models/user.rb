@@ -20,4 +20,6 @@ class User < ActiveRecord::Base
     end
     info
   end
+
+
 end

@@ -2,21 +2,7 @@
     <% comments.each do |comment|%>
         <div class="row mb40 border_b">
           <div class="col-md-3">
-            <div class="media">
-              <a class="pull-left" href="#"><img class="media-object" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/64/64/default.jpg" alt='' /></a>
-              <div class="media-body">
-                <h4 class="media-heading">
-                  宗含含
-                </h4>
-                <p>
-                  做生活的设计师！<br />
-                  <%= link_to :url => {:controller => 'care_careds', :action => 'create', :cared_id => comment.user.get_user_info.id}, :method => :post, :remote => true do %>
-                      关注
-                  <% end %>
-                      | 26 粉丝
-                </p>
-              </div>
-            </div>
+            <%= render :partial => 'common/user', :locals => {:user => comment.user, :user_info => comment.user_info}%>
           </div>
           <div class="col-md-9">
             <div class="col-md-11">

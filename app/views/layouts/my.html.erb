@@ -15,14 +15,15 @@
     <div class="col-md-12 column">
       <%= render 'common/top_banner'%>
       <%= render 'common/message'%>
-
-      <%= render 'common/user'%>
+    </div>
+    <div class="col-md-12 column">
+      <%= render :partial => 'common/user', :locals => {:user => current_user, :user_info => current_user_info}%>
     </div>
   </div>
   <div class="tabbable" id="tabs-64980">
     <%= render 'common/my_menu'%>
     <div class="tab-content">
-        <%= yield %>
+      <%= yield %>
     </div>
   </div>
 </div>

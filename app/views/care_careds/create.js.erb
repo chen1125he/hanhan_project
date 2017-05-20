@@ -1,0 +1,5 @@
+<% if @save_flag %>
+$(".user"+ <%= params[:cared_id]%> +" .care_link").html("<%= j(render "user_common/cancel_care", :user_info_id => params[:cared_id])%>")
+<% else %>
+alert("关注失败");
+<% end %>

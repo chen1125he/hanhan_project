@@ -1,0 +1,7 @@
+<div class="row clearfix">
+  <% @cares.each do |care|%>
+      <div class="col-md-4 column">
+        <%= render :partial => 'common/user', :locals => {:user => care.user, :user_info => care}%>
+      </div>
+  <% end %>
+</div>

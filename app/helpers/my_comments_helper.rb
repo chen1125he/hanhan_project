@@ -1,0 +1,2 @@
+module MyCommentsHelper
+end

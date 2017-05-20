@@ -5,8 +5,7 @@ class UserInfo < ApplicationRecord
   has_many :plates, :through => :user_info_plates
   has_one :user_info_picture, :dependent => :destroy, :as => :owner
 
-  has_many :carers, :foreign_key => 'care_id', :as => :carder
-  has_many :careders, :foreign_key => 'cared_id', :as => :carer
+
 
   # belongs_to :careder_, :polymorphic => true
   # has_many :user_infos, :through => :carers, :as => :careder_
@@ -38,5 +37,25 @@ class UserInfo < ApplicationRecord
     else
       'user/timg.jpg'
     end
+  end
+
+
+  def cares
+    cared_ids = CareCared.where(:care_id => self.id).pluck(:cared_id)
+    UserInfo.user_info_show.where(:id => cared_ids)
+  end
+
+  def careds
+    care_ids = CareCared.where(:cared_id => self.id).pluck(:care_id)
+    UserInfo.user_info_show.where(:id => care_ids)
+  end
+
+  def has_cared user_id = nil
+    CareCared.where(:care_id => self.id, :cared_id => user_id).present?
+  end
+
+  def self.user_info_show
+    # TODO
+    where("1=1")
   end
 end

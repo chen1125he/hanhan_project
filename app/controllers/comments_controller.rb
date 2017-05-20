@@ -16,7 +16,7 @@ class CommentsController < BaseController
     Comment.transaction do
       if @comment.save
         @save_flag = true
-        @post.update_attribute(:comment_num, @post.comment_num.to_i + 1)
+        @post.update_attribute(:comment_num, @post.comments.count)
       else
         raise ActiveRecord::Rollback
       end

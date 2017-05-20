@@ -1,0 +1,2 @@
+module MyCaresHelper
+end

@@ -8,4 +8,10 @@
   <li class="<%= admin_menu_active :user_infos%>">
     <%= link_to '我的信息', {:controller => 'user_infos', :action => 'edit'}%>
   </li>
+  <li class="<%= admin_menu_active :my_cares%>">
+    <%= link_to '我关注的', {:controller => 'my_cares', :action => 'index'}%>
+  </li>
+  <li class="<%= admin_menu_active :my_careds%>">
+    <%= link_to '关注我的', {:controller => 'my_careds', :action => 'index'}%>
+  </li>
 </ul>

@@ -1,0 +1,16 @@
+<div class="tab-pane active" id="my_careds">
+  <p>    </p>
+  <div class="row clearfix">
+    <% @careds.each do |cared|%>
+        <div class="col-md-4 column mt50">
+          <%= render :partial => 'common/user', :locals => {:user => cared.user, :user_info => cared}%>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <%= paginate @careds, :params => {:controller => :my_careds, :action => :index}%>
+    </div>
+  </div>
+</div>

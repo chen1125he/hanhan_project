@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517121924) do
+ActiveRecord::Schema.define(version: 20170519124014) do
 
   create_table "care_careds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "care_id"
@@ -86,16 +86,16 @@ ActiveRecord::Schema.define(version: 20170517121924) do
     t.integer  "user_id"
     t.integer  "plate_id"
     t.string   "title"
-    t.text     "content",           limit: 65535
-    t.boolean  "deleted",                         default: false, null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.text     "detail",            limit: 65535
-    t.integer  "read_num",                        default: 0
-    t.boolean  "show_flag",                       default: true
-    t.integer  "comment_num",                     default: 0
-    t.boolean  "user_deleted_flag",               default: false
-    t.integer  "good_num",                        default: 0
+    t.text     "content",     limit: 65535
+    t.boolean  "deleted",                   default: false, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.text     "detail",      limit: 65535
+    t.integer  "read_num",                  default: 0
+    t.boolean  "show_flag",                 default: true
+    t.integer  "comment_num",               default: 0
+    t.integer  "good_num",                  default: 0
+    t.integer  "post_status",               default: 1
   end
 
   create_table "user_info_plates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

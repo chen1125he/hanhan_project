@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   PER_PAGE = 10
   PER_PAGE3 = 3
+  PER_PAGE6 = 6
   PER_PAGE18 = 18
   PER_PAGE12 = 12
 
@@ -24,6 +25,11 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= current_user_session && current_user_session.record
+    if @current_user.try(:role_type) != "User"
+      @current_user = nil
+    else
+      @current_user
+    end
   end
 
   def current_user_info
@@ -31,7 +37,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admin
-    @current_user ||= current_user_session && current_user_session.record
+    @current_admin ||= current_user_session && current_user_session.record
+    if @current_admin.try(:role_type) != "Admin"
+      @current_admin = nil
+    else
+      @current_admin
+    end
   end
 
   def layout_str

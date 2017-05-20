@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
   layout 'user'
 
-  after_action :record_path
+  before_action :record_path
   before_action :login_need_auth
 
 
@@ -10,7 +10,11 @@ class BaseController < ApplicationController
       :posts => [:new, :create, :edit, :update, :say_good, :cancel_say_good],
       :comments => [:new, :create],
       :my_posts => [:index],
-      :user_infos => [:edit, :update, :destroy_user_image]
+      :user_infos => [:edit, :update, :destroy_user_image],
+      :care_careds => [:create, :destroy],
+      :my_cares => [:index],
+      :my_careds => [:index],
+      :my_comments => [:index]
   }
   # 需要记录，并在登录后跳转的页面
   # RECORD_ACTION = {

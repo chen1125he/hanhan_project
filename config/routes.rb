@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   resources :my_posts do
   end
 
+  resources :my_cares
+
+  resources :my_careds
+
+  resources :my_comments
+
   resources :care_careds
 
   delete 'user_sessions/destroy', :to => 'user_sessions#destroy'
