@@ -1,0 +1,14 @@
+<% if posts.present? || show_title_with_blank%>
+<%title = plate.present? ? plate.name : "最新帖子"%>
+<h1>
+  <%= title %>：
+</h1>
+<% end %>
+<% if posts.present?%>
+<div class="row clearfix mt50">
+  <%= render 'post_common/lines_per_6', :posts => posts %>
+</div>
+<div class="text-right">
+    <%= paginate posts%>
+</div>
+<% end %>

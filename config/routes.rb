@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'home', :to => 'home#index'
   get '/', :to => 'home#index'
+  get 'search', :to => "home#search"
+  post 'search', :to => "home#search"
   resources :registers
 
   get '/posts/:id/comments/new', :to => 'comments#new'

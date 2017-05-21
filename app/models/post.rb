@@ -19,9 +19,29 @@ class Post < ApplicationRecord
 
   }
 
+  def self.get_conn params = {}
+    conn = [[]]
+    if params[:plate_id].present?
+      conn[0] << 'posts.plate_id = ?'
+      conn << params[:plate_id]
+    end
+
+    if params[:key_word].present?
+      conn[0] << "posts.title like ? or posts.content like ? or posts.detail like ?"
+      conn << ["%#{params[:key_word].to_s.gsub(/^[　 ]+|[　 ]+$/, '')}%", "%#{params[:key_word].to_s.gsub(/^[　 ]+|[　 ]+$/, '')}%", "%#{params[:key_word].to_s.gsub(/^[　 ]+|[　 ]+$/, '')}%"]
+    end
+
+    conn[0] = conn[0].join(" and ")
+    conn.flatten
+  end
+
   def self.show_post
     # where(:show_flag => true, :user_deleted_flag => false).order('posts.updated_at desc')
-    joins(:plate).where('plates.show_flag = true').where(:post_status => [1, 4]).order('posts.updated_at desc')
+    Post.joins(:plate).where('plates.show_flag = true').where(:post_status => [1, 4]).order('posts.updated_at desc')
+  end
+
+  def self.show_post_only
+    where('plates.show_flag = true').where(:post_status => [1, 4]).order('posts.updated_at desc')
   end
 
 
