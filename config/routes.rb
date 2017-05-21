@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :my_comments
 
   get 'users/edit', :to => 'users#edit'
+  get 'users/update', :to => 'users#update'
   resources :users
 
   resources :care_careds

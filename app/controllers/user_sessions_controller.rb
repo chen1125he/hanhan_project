@@ -11,6 +11,7 @@ class UserSessionsController < BaseController
       @user_session = UserSession.new(get_params)
     end
     if @user_session.save
+      pp current_user, current_user.try(:login_permit)
       unless current_user.try(:login_permit)
         flash[:error] = t 'messages.login_limited'
         current_user_session.try(:destroy)

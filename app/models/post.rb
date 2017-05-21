@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :post_read_nums
   has_many :post_good_nums
   belongs_to :user
+  belongs_to :plate
 
   validates :content, :presence => true, :length => {:maximum => 100}
   validates :title, :presence => true
@@ -20,7 +21,7 @@ class Post < ApplicationRecord
 
   def self.show_post
     # where(:show_flag => true, :user_deleted_flag => false).order('posts.updated_at desc')
-    where(:post_status => [1, 4]).order('posts.updated_at desc')
+    joins(:plate).where('plates.show_flag = true').where(:post_status => [1, 4]).order('posts.updated_at desc')
   end
 
 

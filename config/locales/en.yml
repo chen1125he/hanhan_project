@@ -65,6 +65,7 @@ en:
       invalid: '格式不正确'
       confirmation: '两次输入的密码不一致'
       email_invalid: '请输入正确的邮箱地址'
+      input_error: '错误！'
       models:
         user: '用户'
   activerecord: &activerecord_messages
@@ -81,6 +82,7 @@ en:
         login: '用户名'
         password: '密码'
         password_confirmation: '密码确认'
+        pre_password: '原密码'
       plate:
         name: '板块名'
       notice:
@@ -100,6 +102,7 @@ en:
         too_short: "最少需要输入%{count}位！"
         invalid: '格式不正确！'
         confirmation: '两次输入的密码不一致！'
+        input_error: '错误！'
         email_invalid: '请输入正确的邮箱地址！'
         blank: '不能为空！'
         uniquess: '已经存在！'

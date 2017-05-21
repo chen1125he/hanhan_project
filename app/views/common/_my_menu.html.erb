@@ -14,4 +14,7 @@
   <li class="<%= admin_menu_active :my_careds%>">
     <%= link_to '关注我的', {:controller => 'my_careds', :action => 'index'}%>
   </li>
+  <li class="<%= admin_menu_active :users%>">
+    <%= link_to '修改密码', {:controller => 'users', :action => 'edit'}%>
+  </li>
 </ul>
