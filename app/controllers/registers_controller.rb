@@ -16,6 +16,7 @@ class RegistersController < BaseController
       @user_info.save
       unless @user.save
         render 'new'
+        pp @user.errors
         raise ActiveRecord::Rollback
       else
         flash[:notice] = I18n.t('messages.register_success')

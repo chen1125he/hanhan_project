@@ -2,7 +2,7 @@
   <div class="col-md-4 column">
   </div>
   <div class="col-md-4 column">
-    <%= simple_form_for @user, :url => {:controller => 'registers', :action => 'create'}, :html => {:multipart => true} do |f|%>
+    <%= simple_form_for @user, :url => {:controller => 'registers', :action => 'create'}, :method => :post, :html => {:multipart => true} do |f|%>
       <div class="form-group">
         <%= f.input :login, :label => '用户名：（用户名唯一）', :input_html => {:class => 'form-control', :id => 'login'}%>
       </div>

@@ -1,0 +1,2 @@
+module HisPostsHelper
+end

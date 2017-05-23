@@ -35,6 +35,16 @@ class Post < ApplicationRecord
     conn.flatten
   end
 
+  def self.with_user_connect user_info
+    return [] unless user_info.present?
+    plate_ids = UserInfoPlate.where(:user_info_id => user_info.id).pluck(:plate_id)
+    if plate_ids.present?
+      ["posts.plate_id in (?)", plate_ids]
+    else
+      []
+    end
+  end
+
   def self.show_post
     # where(:show_flag => true, :user_deleted_flag => false).order('posts.updated_at desc')
     Post.joins(:plate).where('plates.show_flag = true').where(:post_status => [1, 4]).order('posts.updated_at desc')
@@ -96,5 +106,11 @@ class Post < ApplicationRecord
       self.update_attribute(:good_num, self.post_good_nums.count)
     end
     self.post_good_nums.count
+  end
+
+  # 更新权重
+  def update_weight
+    weight = self.comment_num * 0.5 + self.good_num * 0.3 + self.read_num * 0.2
+    self.update_attribute(:weight, weight)
   end
 end

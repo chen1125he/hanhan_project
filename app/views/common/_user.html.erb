@@ -1,12 +1,15 @@
 <div class="media  <%= "user#{user_info.try(:id)}"%>">
-  <a class="pull-left" href="#">
+  <% user_path = user_info.try(:id) == current_user_info.try(:id) ? my_posts_path : "#{his_posts_path}?user=#{user_info.try(:id)}"%>
+  <a class="pull-left" href="<%= user_path%>">
     <div class="user_image">
       <%= image_tag user_info.try(:get_user_image)%>
     </div>
   </a>
   <div class="media-body">
     <h4 class="media-heading">
+      <a href="<%= user_path%>">
       <%= user_info.try(:nick_name)%>
+      </a>
     </h4>
     <p>
       <%= user_info.try(:sign)%><br />

@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   has_one :user_picture,:dependent => :destroy, :as => :owner
   has_one :user_info
 
-  attr_accessor :pre_password
+  attr_accessor :pre_password, :update_password_flag
 
-  validates_presence_of :pre_password, :password, :password_confirmation, :on => :update
+  validates_presence_of  :password, :password_confirmation, :on => :update
   validate 'validate_pre_password'
 
 
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def validate_pre_password
-    return unless self.id.present?
+    return unless self.update_password_flag == true
     unless self.valid_password?(pre_password)
       self.errors.add(:pre_password, I18n.t("authlogic.error_messages.input_error"))
     end

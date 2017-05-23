@@ -3,12 +3,15 @@ class PostsController < BaseController
   before_action :get_post, :only => [:show, :say_good, :cancel_say_good]
 
   def index
-    @posts = Post.includes(:post_pictures).all
+    @posts = Post.includes(:post_pictures).show_post.all
   end
 
   def show
     @comments = Comment.show_comment @post.id, params
-    @post.update_read_num request.remote_ip, current_user
+    Post.transaction do
+      @post.update_read_num request.remote_ip, current_user
+      @post.update_weight
+    end
     respond_to do |format|
       format.html {}
       format.js {}
@@ -36,11 +39,17 @@ class PostsController < BaseController
 
   # 更新点赞数,点赞需要用户登录
   def say_good
-    @good_flag = @post.update_good_num request.remote_ip, current_user
+    Post.transaction do
+      @good_flag = @post.update_good_num request.remote_ip, current_user
+      @post.update_weight
+    end
   end
 
   def cancel_say_good
-    @cancel_good_flag = @post.update_good_num request.remote_ip, current_user, true
+    Post.transaction do
+      @cancel_good_flag = @post.update_good_num request.remote_ip, current_user, true
+      @post.update_weight
+    end
   end
 
   private

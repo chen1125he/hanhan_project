@@ -7,8 +7,8 @@ class UsersController < BaseController
   end
 
   def update
-    User
     @user = current_user
+    @user.update_password_flag = true
     if @user.update(params.fetch(:user).permit(:pre_password, :password, :password_confirmation))
       flash[:notice] = I18n.t('messages.update_success')
       redirect_to my_posts_path

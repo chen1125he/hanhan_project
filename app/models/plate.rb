@@ -14,7 +14,7 @@ class Plate < ApplicationRecord
 
 
   def self.show_plates
-    Plate.where(:show_flag => true)
+    Plate.where(:show_flag => true).joins(:posts).where("posts.post_status in (?)", [1, 4]).group("posts.plate_id").order("count(posts.plate_id) desc")
   end
 
   # 搜索出6个帖子最多的板块，选出随机的3个用作热门话题

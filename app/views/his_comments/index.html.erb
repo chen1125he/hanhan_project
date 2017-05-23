@@ -1,0 +1,33 @@
+<div class="tab-pane active" id="my_comments">
+  <p>    </p>
+
+  <div class="row clearfix">
+    <% @his_comments.each do |comment|%>
+        <div class="col-md-10 column col-md-offset-1 mt20 my_comment_display">
+          <div class="col-md-9">
+            <p class="comment_content"><%= replace_br comment.content%></p>
+          </div>
+          <div class="col-md-3">
+            <span class="comment_show_time"><%= comment_show_time comment.created_at%></span>
+          </div>
+          <div class="col-md-9 mt20">
+            <p class="post_title">
+              <span class="font_grey">回复的帖子:</span>&nbsp;&nbsp;&nbsp;
+              <%= link_to post_path(comment.post) do%>
+                  "<%= comment.post.title%>"
+                  &gt;
+                  <%= comment.post.content%>
+              <% end %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <%= paginate @his_comments, :params => {:controller => :my_comments, :action => :index}%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  <li class="<%= admin_menu_active :his_posts%>">
+    <%= link_to '他的帖子', "#{his_posts_path}?user=#{params[:user]}"%>
+  </li>
+  <li class="<%= admin_menu_active :his_comments%>">
+    <%= link_to '他的评论', "#{his_comments_path}?user=#{params[:user]}"%>
+  </li>
+</ul>

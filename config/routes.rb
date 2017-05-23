@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'search', :to => "home#search"
   resources :registers
 
+  resources :discovers
+
   get '/posts/:id/comments/new', :to => 'comments#new'
   post '/posts/:id/comments', :to => 'comments#create'
   resources :posts do
@@ -22,11 +24,16 @@ Rails.application.routes.draw do
   resources :my_posts do
   end
 
+  resources :plates
+
   resources :my_cares
 
   resources :my_careds
 
   resources :my_comments
+
+  resources :his_posts
+  resources :his_comments
 
   get 'users/edit', :to => 'users#edit'
   get 'users/update', :to => 'users#update'

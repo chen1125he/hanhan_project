@@ -54,6 +54,7 @@ en:
     update_success: '更新成功！'
     update_faild: '更新失败！'
     register_success: '注册成功！'
+    user_not_exist: '该用户不存在！'
 
   error:
     too_short: '太短'

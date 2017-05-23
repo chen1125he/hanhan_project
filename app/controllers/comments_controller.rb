@@ -17,6 +17,7 @@ class CommentsController < BaseController
       if @comment.save
         @save_flag = true
         @post.update_attribute(:comment_num, @post.comments.count)
+        @post.update_weight
       else
         raise ActiveRecord::Rollback
       end
