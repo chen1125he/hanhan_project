@@ -1,7 +1,7 @@
 <div class="col-md-12">
 <%= render :partial => 'common/user', :locals => {:user => current_user, :user_info => current_user_info}%>
 </div>
-<h1>编辑帖子：</h1>
+<h1>新建帖子：</h1>
 <div class="row clearfix">
   <%= simple_form_for @post, :url => {:controller => 'posts', :action => 'create'}, :html => {:multipart => true}  do |f|%>
     <%= render 'form', {:f => f}%>

@@ -7,6 +7,9 @@
   <div class="col-md-4 column">
     <h2>
       <%= plate.name %>
+      <span id="care_plate_<%= plate.id%>">
+        <%= render :partial => "plates/care_plate", :locals =>{:plate => plate}%>
+      </span>
     </h2>
     <p>
       <%= replace_br plate.info%>

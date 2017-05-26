@@ -3,6 +3,7 @@ class UserInfo < ApplicationRecord
   belongs_to :user
   has_many :user_info_plates, :dependent => :destroy
   has_many :plates, :through => :user_info_plates
+  has_many :posts
   has_one :user_info_picture, :dependent => :destroy, :as => :owner
 
 

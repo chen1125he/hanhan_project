@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :post_good_nums
   belongs_to :user
   belongs_to :plate
+  belongs_to :user_info
 
   validates :content, :presence => true, :length => {:maximum => 100}
   validates :title, :presence => true
@@ -21,14 +22,31 @@ class Post < ApplicationRecord
 
   def self.get_conn params = {}
     conn = [[]]
-    if params[:plate_id].present?
+    if params[:plate_id].to_s.strip.present?
       conn[0] << 'posts.plate_id = ?'
       conn << params[:plate_id]
     end
 
     if params[:key_word].present?
       conn[0] << "posts.title like ? or posts.content like ? or posts.detail like ?"
-      conn << ["%#{params[:key_word].to_s.gsub(/^[　 ]+|[　 ]+$/, '')}%", "%#{params[:key_word].to_s.gsub(/^[　 ]+|[　 ]+$/, '')}%", "%#{params[:key_word].to_s.gsub(/^[　 ]+|[　 ]+$/, '')}%"]
+      conn << ["%#{params[:key_word].to_s.strip}%", "%#{params[:key_word].to_s.strip}%", "%#{params[:key_word].to_s.strip}%"]
+    end
+
+    conn[0] = conn[0].join(" and ")
+    conn.flatten
+  end
+
+  # 获取后台的搜索条件
+  def get_admin_conn params
+    conn = [[]]
+    if params[:plate_id].to_s.strip.present?
+      conn[0] << 'posts.plate_id = ?'
+      conn << params[:plate_id]
+    end
+
+    if params[:login].to_s.strip.present?
+      conn[0] << 'users.login like ?'
+      conn << "%#{params[:login].to_s.strip}%"
     end
 
     conn[0] = conn[0].join(" and ")

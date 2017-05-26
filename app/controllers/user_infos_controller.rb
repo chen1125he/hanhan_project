@@ -3,7 +3,7 @@ class UserInfosController < BaseController
   layout 'my'
 
   def edit
-    @plates = Plate.all
+    @plates = Plate.selectable_plates
     @user_info = current_user.get_user_info
   end
 

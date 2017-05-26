@@ -26,6 +26,7 @@ class PostsController < BaseController
     @post = Post.new(get_params)
     Post.transaction do
       @post.user = current_user
+      @post.user_info = current_user_info
       if save_or_update_picture && @post.save
         flash[:notice] = I18n.t('messages.release_success')
         redirect_to posts_path

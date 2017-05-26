@@ -1,3 +1,4 @@
+<%= render :partial => 'common/user', :locals => {:user => @post.try(:user), :user_info => @post.try(:user).try(:get_user_info)}%>
 <h1>帖子详情：</h1>
 <div class="row clearfix">
   <div class="col-md-1 column">

@@ -1,0 +1,7 @@
+<% if plate.present?%>
+    <% if current_user_info.blank? || !plate.be_cared_by?(current_user_info)%>
+        <%= link_to "关注", care_plate_plates_path(plate_id: plate.id), :method => :post, :remote => true, :class => "btn btn-default btn-xs"%>
+    <% else %>
+        <%= link_to "取消关注", cancel_care_plate_plates_path(plate_id: plate.id), :method => :post, :remote => true, :class => "btn  btn-default btn-xs"%>
+    <% end %>
+<% end %>

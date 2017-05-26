@@ -1,3 +1,4 @@
+<% if user.present? && user_info.present?%>
 <div class="media  <%= "user#{user_info.try(:id)}"%>">
   <% user_path = user_info.try(:id) == current_user_info.try(:id) ? my_posts_path : "#{his_posts_path}?user=#{user_info.try(:id)}"%>
   <a class="pull-left" href="<%= user_path%>">
@@ -27,3 +28,4 @@
   </div>
 </div>
 
+<% end %>

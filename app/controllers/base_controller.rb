@@ -17,7 +17,8 @@ class BaseController < ApplicationController
       :my_comments => [:index],
       :users => [:edit, :update],
       :his_posts => [:index],
-      :his_comments => [:index]
+      :his_comments => [:index],
+      :plates => [:cancel_care_plate, :care_plate]
   }
   # 需要记录，并在登录后跳转的页面
   # RECORD_ACTION = {

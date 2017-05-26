@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   resources :my_posts do
   end
 
-  resources :plates
+  resources :plates do
+    collection do
+      match :care_plate, :via => [:post]
+      match :cancel_care_plate, :via => [:post]
+    end
+  end
 
   resources :my_cares
 
@@ -50,15 +55,21 @@ Rails.application.routes.draw do
     match 'destroy_user_image', :via => [:post]
   end
 
-
+  get 'admin', :to => "admin/posts#index"
   namespace :admin do
+
+
     resources :users
 
     delete 'user_sessions/destroy', :to => 'user_sessions#destroy'
     resources :user_sessions do
     end
 
-    resources :posts
+    resources :posts do
+      collection do
+        match :search, :via => [:post, :get]
+      end
+    end
 
     resources :plates
 

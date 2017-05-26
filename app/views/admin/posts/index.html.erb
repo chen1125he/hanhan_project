@@ -1,132 +1,98 @@
 
     <div class="active" id="">
-      <p>
-        I'm in Section 1.
-      <table class="table">
+      <p class="mt10">
+        &nbsp;
+      </p>
+      <h4>搜索</h4>
+      <div class="row mb30 mt20">
+        <%= form_tag search_admin_posts_path, :method => :post, :class => "form-search" do %>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">
+                  用户账号
+                </label>
+                <%= text_field_tag :login, params[:login], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">
+                  板块
+                </label>
+                <%= select_tag :plate_id, options_for_select(Plate.all.pluck(:name, :id), params[:plate_id]), :include_blank => true, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">
+                  显示状态
+                </label>
+                <%= select_tag :post_status, options_for_select(Post::POST_STATUS.invert, params[:post_status]), :include_blank => true, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">
+                  标题
+                </label>
+                <%= text_field_tag :title, params[:title], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">
+                  描述
+                </label>
+                <%= text_field_tag :content, params[:content], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info">搜索</button>
+                  <button type="reset" class="btn btn-warning">清除</button>
+                </div>
+            </div>
+        <% end %>
+      </div>
+
+      <!--<p class="">-->
+        <!--<button class="pull-right btn btn-success" onclick="location='<%= new_admin_post_path %>'">新建板块</button>-->
+      <!--</p>-->
+      <table class="color_table table">
         <thead>
         <tr>
-          <th>
-            序号
-          </th>
-          <th>
-            用户ID
-          </th>
-          <th>
-            用户名
-          </th>
-          <th>
-            昵称
-          </th>
-          <th>
-            邮箱
-          </th>
-          <th>
-            最后登录
-          </th>
+          <th width="5%" class="center">序号</th>
+          <th width="10%" class="center">用户账号</th>
+          <th width="10%" class="center">板块</th>
+          <th width="10%" class="center">显示状态</th>
+          <th width="15%" class="center">标题</th>
+          <th width="30%" class="center">描述</th>
+          <th width="20%" class="center">操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>
-            1
-          </td>
-          <td>
-            zonghanhan
-          </td>
-          <td>
-            宗含含
-          </td>
-          <td>
-            Default
-          </td>
-        </tr>
-        <tr class="success">
-          <td>
-            2
-          </td>
-          <td>
-            zonghanhan
-          </td>
-          <td>
-            宗含含
-          </td>
-          <td>
-            Approved
-          </td>
-        </tr>
-        <tr class="error">
-          <td>
-            3
-          </td>
-          <td>
-            zonghanhan
-          </td>
-          <td>
-            宗含含
-          </td>
-          <td>
-            Declined
-          </td>
-        </tr>
-        <tr class="warning">
-          <td>
-            4
-          </td>
-          <td>
-            zonghanhan
-          </td>
-          <td>
-            宗含含
-          </td>
-          <td>
-            Pending
-          </td>
-        </tr>
-        <tr class="info">
-          <td>
-            5
-          </td>
-          <td>
-            zonghanhan
-          </td>
-          <td>
-            宗含含
-          </td>
-          <td>
-            Call in to confirm
-          </td>
-        </tr>
+        <% if @posts.present?%>
+            <% @posts.each_with_index  do |post, index|%>
+                <tr>
+                  <td class="center"><%= index + 1 %></td>
+                  <td class="center"><%= post.try(:user).try(:login)%></td>
+                  <td class="center"><%= post.try(:plate).try(:name) %></td>
+                  <td class="center"><%= Post::POST_STATUS[post.post_status]%></td>
+                  <td class="center"><%= post.title %></td>
+                  <td class="center"><%= replace_br post.content%></td>
+                  <td class="center">
+                    <%= link_to edit_admin_post_path(post), :class => 'btn btn-primary' do %>
+                        编辑
+                    <% end %>
+                  </td>
+            <% end %>
+        <% else %>
+            <tr>
+              <td class="center" colspan="5"><%= I18n.t('messages.no_data')%></td>
+            </tr>
+        <% end %>
         </tbody>
       </table>
-      <div class="container" >
-        <div class="row clearfix" >
-          <div class="col-md-6 column" pull-right>
-            <ul class="pagination">
-              <li>
-                <a href="#">上一页</a>
-              </li>
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">下一页</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      </p>
+      <p><%= page_entries_info @posts%></p>
+      <%= paginate @posts%>
     </div>
-

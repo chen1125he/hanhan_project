@@ -1,7 +1,7 @@
 <div class="col-md-8 column">
   <div class="form-group <%= 'field_with_errors' if @post.errors[:plate_id].present?%>">
     <label class="control-label">板块</label>
-    <%= f.select :plate_id, Plate.show_plates.pluck(:name, :id),
+    <%= f.select :plate_id, Plate.selectable_plates.pluck(:name, :id),
                  {:include_blank => true}, :class => 'form-control' %>
     <%= f.full_error :plate_id, :class => 'error' %>
   </div>
@@ -28,9 +28,7 @@
 </div>
 
 <div class="col-md-3 column">
-  <div class="post_img" id="post_img">
 
-  </div>
 </div>
 
 <script type="application/javascript">
