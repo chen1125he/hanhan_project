@@ -7,13 +7,13 @@
 
         <div class="form-group">
           <button class="btn btn-success" type="submit">保存</button>
-          <%= link_to "查看评论", "#", :class => "btn btn-success"  %>
+          <%= link_to "查看评论", search_admin_comments_path(:title => @post.title), :class => "btn btn-success"  %>
         </div>
-        <div class="form-group <%= 'field_with_errors' if @post.errors[:plate_id].present?%>">
-          <label class="control-label">板块</label>
+        <div class="form-group <%= 'field_with_errors' if @post.errors[:post_status].present?%>">
+          <label class="control-label">显示状态</label>
           <%= f.select :post_status, Post::POST_STATUS.invert,
                        {}, :class => 'form-control'%>
-          <%= f.full_error :plate_id, :class => 'error' %>
+          <%= f.full_error :post_status, :class => 'error' %>
         </div>
         <div class="form-group <%= 'field_with_errors' if @post.errors[:plate_id].present?%>">
           <label class="control-label">板块</label>

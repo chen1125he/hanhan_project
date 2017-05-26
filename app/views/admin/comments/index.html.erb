@@ -1,0 +1,96 @@
+
+<div class="active" id="">
+  <p class="mt10">
+    &nbsp;
+  </p>
+  <h4>搜索</h4>
+  <div class="row mb30 mt20">
+    <%= form_tag search_admin_comments_path, :method => :comment, :class => "form-search" do %>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">
+              所属帖子
+            </label>
+            <%= text_field_tag :title, params[:title], :class => 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">
+              发贴用户账号
+            </label>
+            <%= text_field_tag :login, params[:login], :class => 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">
+              显示状态
+            </label>
+            <%= select_tag :show_flag, options_for_select(Comment::SHOW_FLAG.invert, params[:show_flag]), :include_blank => true, :class => 'form-control'%>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">
+              内容
+            </label>
+            <%= text_field_tag :content, params[:content], :class => 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="form-group">
+            <button type="submit" class="btn btn-info">搜索</button>
+            <button type="button" class="btn btn-warning clearConditions">清除</button>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <!--<p class="">-->
+  <!--<button class="pull-right btn btn-success" onclick="location='<%= new_admin_comment_path %>'">新建板块</button>-->
+  <!--</p>-->
+  <table class="color_table table">
+    <thead>
+    <tr>
+      <th width="5%" class="center">序号</th>
+      <th width="10%" class="center">所属帖子</th>
+      <th width="10%" class="center">发贴用户账号</th>
+      <th width="10%" class="center">发布时间</th>
+      <th width="15%" class="center">显示状态</th>
+      <th width="30%" class="center">内容</th>
+      <th width="20%" class="center">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @comments.present?%>
+        <% @comments.each_with_index  do |comment, index|%>
+            <tr>
+              <td class="center"><%= index + 1 %></td>
+              <td class="center"><%= comment.try(:post).try(:title)%></td>
+              <td class="center"><%= comment.try(:user).try(:login) %></td>
+              <td class="center"><%= comment.try(:created_at).try(:strftime, "%Y/%m/%d")%></td>
+              <td class="center"><%= Comment::SHOW_FLAG[comment.show_flag] %></td>
+              <td class="center"><%= replace_br comment.content%></td>
+              <td class="center">
+                <%if comment.show_flag%>
+                    <%= link_to admin_comment_path(comment, :update_show_flag => false), :method => :put, :class => 'btn btn-primary' do %>
+                        不显示
+                    <% end %>
+                <% else %>
+                    <%= link_to admin_comment_path(comment, :update_show_flag => true), :method => :put, :class => 'btn btn-primary' do %>
+                        显示
+                    <% end %>
+                <% end %>
+              </td>
+        <% end %>
+    <% else %>
+        <tr>
+          <td class="center" colspan="7"><%= I18n.t('messages.no_data')%></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p><%= page_entries_info @comments%></p>
+  <%= paginate @comments%>
+</div>

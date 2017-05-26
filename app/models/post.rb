@@ -37,7 +37,7 @@ class Post < ApplicationRecord
   end
 
   # 获取后台的搜索条件
-  def get_admin_conn params
+  def self.get_admin_conn params
     conn = [[]]
     if params[:plate_id].to_s.strip.present?
       conn[0] << 'posts.plate_id = ?'
@@ -47,6 +47,21 @@ class Post < ApplicationRecord
     if params[:login].to_s.strip.present?
       conn[0] << 'users.login like ?'
       conn << "%#{params[:login].to_s.strip}%"
+    end
+
+    if params[:post_status].to_s.strip.present?
+      conn[0] << "posts.post_status = ?"
+      conn << params[:post_status]
+    end
+
+    if params[:title].to_s.strip.present?
+      conn[0] << "posts.title like ?"
+      conn << "%#{params[:title].to_s.strip}%"
+    end
+
+    if params[:content].to_s.strip.present?
+      conn[0] << "posts.content like ?"
+      conn << "%#{params[:content].to_s.strip}%"
     end
 
     conn[0] = conn[0].join(" and ")

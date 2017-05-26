@@ -58,6 +58,12 @@ Rails.application.routes.draw do
   get 'admin', :to => "admin/posts#index"
   namespace :admin do
 
+    resources :comments do
+      collection do
+        match :search, :via => [:post, :get]
+      end
+    end
+
 
     resources :users
 

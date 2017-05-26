@@ -17,6 +17,23 @@ $(function(){
         minView: 'month',
         language: 'cn'
     });
+
+    $(".clearConditions").click(function () {
+        var form = $(this).parents('form');
+        form.find('input')
+            .not(':button, :submit, :reset, :hidden, :disabled, :checkbox, :radio')
+            .val('')
+            .removeAttr('checked')
+            .removeAttr('selected');
+        form.find('select').not(':disabled').prop('selectedIndex', -1).trigger('change'); //122017 不清除disabled的项
+        form.find('#q_date_gteq').val('');
+        form.find('#q_date_lteq').val('');
+//        initDateRange();
+        setTimeout(function () {
+            form.find('input[type="checkbox"], input[type="radio"]').prop('checked', false);
+            form.find('input[type="checkbox"], input[type="radio"]').iCheck('update');
+        }, 0)
+    });
 })
 
 function img_preview(file, img_container){

@@ -7,17 +7,10 @@ class UserSessionsController < BaseController
   end
 
   def create
-    UserSession.with_scope(:find_options => {:conditions => "role_type = 'User'"}) do
+    UserSession.with_scope(:find_options => {:conditions => "role_type = 'User' and login_permit = 1"}) do
       @user_session = UserSession.new(get_params)
     end
     if @user_session.save
-      pp current_user, current_user.try(:login_permit)
-      unless current_user.try(:login_permit)
-        flash[:error] = t 'messages.login_limited'
-        current_user_session.try(:destroy)
-        render 'new'
-        return
-      end
       flash[:notice] = I18n.t('messages.login_success')
       # redirect_to admin_posts_path
     else

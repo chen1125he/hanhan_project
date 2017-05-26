@@ -1,0 +1,47 @@
+
+<div class="active" id="">
+  <p class="mt10">
+    &nbsp;
+  </p>
+
+  <!--<p class="">-->
+  <!--<button class="pull-right btn btn-success" onclick="location='<%= new_admin_user_path %>'">新建板块</button>-->
+  <!--</p>-->
+  <table class="color_table table">
+    <thead>
+    <tr>
+      <th width="5%" class="center">序号</th>
+      <th width="10%" class="center">用户账号</th>
+      <th width="10%" class="center">邮箱</th>
+      <th width="10%" class="center">注册日期</th>
+      <th width="15%" class="center">用户类型</th>
+      <th width="15%" class="center">账号状态</th>
+      <th width="20%" class="center">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @users.present?%>
+        <% @users.each_with_index  do |user, index|%>
+            <tr>
+              <td class="center"><%= index + 1 %></td>
+              <td class="center"><%= user.try(:login)%></td>
+              <td class="center"><%= user.try(:email) %></td>
+              <td class="center"><%= user.created_at.try(:strftime, "%Y/%m/%d")%></td>
+              <td class="center"><%= User::USER_TYPE[user.role_type] %></td>
+              <td class="center"><%= User::LOGIN_PERMIT[user.login_permit]%></td>
+              <td class="center">
+                <%= link_to edit_admin_user_path(user), :class => 'btn btn-primary' do %>
+                    编辑
+                <% end %>
+              </td>
+        <% end %>
+    <% else %>
+        <tr>
+          <td class="center" colspan="7"><%= I18n.t('messages.no_data')%></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p><%= page_entries_info @users%></p>
+  <%= paginate @users%>
+</div>

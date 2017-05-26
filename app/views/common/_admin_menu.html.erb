@@ -4,8 +4,13 @@
         帖子管理
     <% end %>
   </li>
+  <li class="<%= admin_menu_active :comments%>">
+    <%= link_to admin_comments_path do%>
+        评论管理
+    <% end %>
+  </li>
   <li class="<%= admin_menu_active :users%>">
-    <%= link_to  do%>
+    <%= link_to admin_users_path do%>
         用户管理
     <% end %>
   </li>

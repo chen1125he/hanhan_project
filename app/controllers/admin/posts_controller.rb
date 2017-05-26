@@ -7,7 +7,9 @@ class Admin::PostsController < ApplicationController
   end
 
   def search
-    conn = Post.get_conn params
+    conn = Post.get_admin_conn params
+    @posts = Post.includes([:user, :plate]).left_joins(:user).where(conn).page(params[:page]).per(PER_PAGE)
+    render 'index'
   end
 
   def edit

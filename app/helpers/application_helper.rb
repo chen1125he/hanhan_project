@@ -7,8 +7,9 @@ module ApplicationHelper
     end
   end
 
-  def replace_br str=""
-   sanitize str.gsub(/\r\n/, '<br />')
+  def replace_br str = ""
+    pp str
+   sanitize str.try(:gsub, /\r\n/, '<br />')
   end
 
   def post_show_time time
