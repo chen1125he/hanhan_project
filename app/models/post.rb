@@ -143,7 +143,7 @@ class Post < ApplicationRecord
 
   # 更新权重
   def update_weight
-    weight = self.comment_num * 0.5 + self.good_num * 0.3 + self.read_num * 0.2
+    weight = (self.comment_num * 0.5 + self.good_num * 0.3 + self.read_num * 0.2)/(self.comment_num  + self.good_num + self.read_num)
     self.update_attribute(:weight, weight)
   end
 end
