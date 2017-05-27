@@ -117,8 +117,8 @@ class Post < ApplicationRecord
     conn = [[]]
     return false if ip.blank? || user.blank?
 
-    conn[0] << "post_good_nums.ip = ?"
-    conn << ip
+    # conn[0] << "post_good_nums.ip = ?"
+    # conn << ip
 
     conn[0] << "post_good_nums.user_id = ?"
     conn << user.id
