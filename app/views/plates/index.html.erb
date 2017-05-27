@@ -3,7 +3,10 @@
       主题一览：
     </h1>
     <div class="row clearfix">
-      <% @plates.each do |plate|%>
+      <% @plates.each_with_index do |plate, index|%>
+          <%if index != 0 && index % 3 == 0%>
+              <div class="clearfix"></div>
+          <% end %>
           <div class="col-md-4">
             <h2>
               <%= plate.name %>
