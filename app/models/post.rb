@@ -100,6 +100,11 @@ class Post < ApplicationRecord
       conn[0] << "post_read_nums.user_id = ?"
       conn << user.id
     end
+
+    if self.id.present?
+      conn[0] << "post_read_nums.post_id = ?"
+      conn << self.id
+    end
     conn[0] = conn[0].join(" and ")
     conn.flatten!
     read_num = PostReadNum.where(conn).first
@@ -123,6 +128,9 @@ class Post < ApplicationRecord
     conn[0] << "post_good_nums.user_id = ?"
     conn << user.id
 
+    conn[0] << "post_read_nums.post_id = ?"
+    conn << self.id
+
     conn[0] = conn[0].join(" and ")
     conn.flatten!
     read_num = PostGoodNum.where(conn).first
@@ -143,6 +151,7 @@ class Post < ApplicationRecord
 
   # 更新权重
   def update_weight
+    return if (self.comment_num  + self.good_num + self.read_num) <= 0
     weight = (self.comment_num * 0.5 + self.good_num * 0.3 + self.read_num * 0.2)/(self.comment_num  + self.good_num + self.read_num)
     self.update_attribute(:weight, weight)
   end
